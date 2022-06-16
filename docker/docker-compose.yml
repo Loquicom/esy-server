@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  esy_db:
+    container_name: "esy-db"
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: esy
+    volumes:
+      - esy_db_volume:/var/lib/postgresql/data
+  esy_server:
+    container_name: "esy-server"
+    image: "${docker.org}/${docker.name}:${docker.tag}"
+    ports:
+      - "8888:80"
+      - "5005:5005"
+    environment:
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+      DB_HOST: "esy-db"
+      DB_NAME: "esy"
+      DB_USER: "admin"
+      DB_PASS: "admin"
+    depends_on:
+      - "esy_db"
+volumes:
+  esy_db_volume:
+    external: true
