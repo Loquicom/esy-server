@@ -8,6 +8,10 @@ else
   export MVN_EXEC="${M2_HOME}/bin/mvn"
 fi
 
+test() {
+  $MVN_EXEC clean test
+}
+
 start() {
     docker volume create esy_db_volume
     docker-compose -f "$COMPOSE_FILE_PATH" up -d
@@ -54,6 +58,12 @@ cli_server() {
 }
 
 case "$1" in
+  test)
+    test
+    ;;
+  build)
+    build
+    ;;
   build_start)
     down
     build
@@ -97,5 +107,5 @@ case "$1" in
     cli_server
     ;;
   *)
-    echo "Usage: $0 {build_start|start|stop|reset|purge|tail|tail_db|tail_server|tail_all|cli_db|cli_server}"
+    echo "Usage: $0 {test|build|build_start|start|stop|reset|purge|tail|tail_db|tail_server|tail_all|cli_db|cli_server}"
 esac

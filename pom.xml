@@ -19,6 +19,12 @@
         <docker.org>loquicom</docker.org>
         <docker.name>${project.artifactId}</docker.name>
         <docker.tag>${project.version}</docker.tag>
+        <docker.server.port>8888</docker.server.port>
+        <docker.server.debugPort>5005</docker.server.debugPort>
+        <docker.db.externalPort>5432</docker.db.externalPort>
+        <docker.db.name>esy</docker.db.name>
+        <docker.db.user>admin</docker.db.user>
+        <docker.db.pass>admin</docker.db.pass>
     </properties>
     <dependencies>
         <dependency>
