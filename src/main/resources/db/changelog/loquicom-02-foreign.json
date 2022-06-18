@@ -1,0 +1,177 @@
+{
+    "databaseChangeLog": [
+        {
+            "changeSet": {
+                "id": "02",
+                "author": "loquicom",
+                "changes": [
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_forecast_saving",
+                            "baseColumnNames": "sa_id",
+                            "baseTableName": "forecast",
+                            "referencedColumnNames": "sa_id",
+                            "referencedTableName": "saving",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_forecast_bank",
+                            "baseColumnNames": "ba_id",
+                            "baseTableName": "forecast",
+                            "referencedColumnNames": "ba_id",
+                            "referencedTableName": "bank",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_bank_users",
+                            "baseColumnNames": "us_id",
+                            "baseTableName": "bank",
+                            "referencedColumnNames": "us_id",
+                            "referencedTableName": "users",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_saving_bank",
+                            "baseColumnNames": "ba_id",
+                            "baseTableName": "saving",
+                            "referencedColumnNames": "ba_id",
+                            "referencedTableName": "bank",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_saving_users",
+                            "baseColumnNames": "us_id",
+                            "baseTableName": "saving",
+                            "referencedColumnNames": "us_id",
+                            "referencedTableName": "users",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_recurrent_bank",
+                            "baseColumnNames": "ba_id",
+                            "baseTableName": "recurrent",
+                            "referencedColumnNames": "ba_id",
+                            "referencedTableName": "bank",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_recurrent_saving",
+                            "baseColumnNames": "sa_id",
+                            "baseTableName": "recurrent",
+                            "referencedColumnNames": "sa_id",
+                            "referencedTableName": "saving",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_income_category",
+                            "baseColumnNames": "ca_id",
+                            "baseTableName": "income",
+                            "referencedColumnNames": "ca_id",
+                            "referencedTableName": "category",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_income_tag",
+                            "baseColumnNames": "ta_id",
+                            "baseTableName": "income",
+                            "referencedColumnNames": "ta_id",
+                            "referencedTableName": "tag",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_income_bank",
+                            "baseColumnNames": "ba_id",
+                            "baseTableName": "income",
+                            "referencedColumnNames": "ba_id",
+                            "referencedTableName": "bank",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_income_saving",
+                            "baseColumnNames": "sa_id",
+                            "baseTableName": "income",
+                            "referencedColumnNames": "sa_id",
+                            "referencedTableName": "saving",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_expense_category",
+                            "baseColumnNames": "ca_id",
+                            "baseTableName": "expense",
+                            "referencedColumnNames": "ca_id",
+                            "referencedTableName": "category",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_expense_tag",
+                            "baseColumnNames": "ta_id",
+                            "baseTableName": "expense",
+                            "referencedColumnNames": "ta_id",
+                            "referencedTableName": "tag",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_expense_saving",
+                            "baseColumnNames": "sa_id",
+                            "baseTableName": "expense",
+                            "referencedColumnNames": "sa_id",
+                            "referencedTableName": "saving",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_expense_bank",
+                            "baseColumnNames": "ba_id",
+                            "baseTableName": "expense",
+                            "referencedColumnNames": "ba_id",
+                            "referencedTableName": "bank",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

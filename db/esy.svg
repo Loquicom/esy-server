@@ -1,0 +1,409 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="915" height="1612" view_box="0 0 915 1612"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.7 le Sat, 18 Jun 2022 08:53:49</desc>
+
+<rect id="frame" x="0" y="0" width="915" height="1612" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+
+<!-- Association LINK SAVING IN -->
+<line x1="831" y1="825" x2="723" y2="1182" stroke="#8073ac" stroke-width="1.5"/>
+<text x="788.566063197" y="887" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="1182" x2="723" y2="1182" stroke="#8073ac" stroke-width="1.5"/>
+<text x="489" y="1173.0" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<g id="association-LINK SAVING IN">
+	<path d="M 777 1154 a 14 14 90 0 1 14 14 V 1181 h -136 V 1168 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 791 1181.0 v 15 a 14 14 90 0 1 -14 14 H 669 a 14 14 90 0 1 -14 -14 V 1181.0 H 136" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="655" y="1154" width="136" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="655" y1="1181" x2="791" y2="1181" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="664" y="1174.3" fill="#000000" font-family="Arial Black" font-size="13">LINK SAVING IN</text>
+</g>
+
+<!-- Association LINK BANK IN -->
+<line x1="77" y1="825" x2="178" y2="1182" stroke="#8073ac" stroke-width="1.5"/>
+<text x="99.9076856258" y="896" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="1182" x2="178" y2="1182" stroke="#8073ac" stroke-width="1.5"/>
+<text x="383" y="1173.0" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<g id="association-LINK BANK IN">
+	<path d="M 225 1154 a 14 14 90 0 1 14 14 V 1181 h -122 V 1168 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 239 1181.0 v 15 a 14 14 90 0 1 -14 14 H 131 a 14 14 90 0 1 -14 -14 V 1181.0 H 122" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="117" y="1154" width="122" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="117" y1="1181" x2="239" y2="1181" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="126" y="1174.3" fill="#000000" font-family="Arial Black" font-size="13">LINK BANK IN</text>
+</g>
+
+<!-- Association POSSESS SAVING -->
+<line x1="445" y1="531" x2="831" y2="531" stroke="#8073ac" stroke-width="1.5"/>
+<text x="491" y="548.0" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="831" y1="825" x2="831" y2="531" stroke="#8073ac" stroke-width="1.5"/>
+<text x="837.0" y="771" fill="#b35806" font-family="Arial" font-size="12">1,1</text>
+<g id="association-POSSESS SAVING">
+	<path d="M 891 503 a 14 14 90 0 1 14 14 V 530 h -148 V 517 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 905 530.0 v 15 a 14 14 90 0 1 -14 14 H 771 a 14 14 90 0 1 -14 -14 V 530.0 H 148" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="757" y="503" width="148" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="757" y1="530" x2="905" y2="530" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="766" y="523.3" fill="#000000" font-family="Arial Black" font-size="13">POSSESS SAVING</text>
+</g>
+
+<!-- Association SIMULATE BANK -->
+<line x1="77" y1="825" x2="286" y2="665" stroke="#8073ac" stroke-width="1.5"/>
+<text x="127" y="801.410203893" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="665" x2="286" y2="665" stroke="#8073ac" stroke-width="1.5"/>
+<text x="373" y="682.0" fill="#b35806" font-family="Arial" font-size="12">1,1</text>
+<g id="association-SIMULATE BANK">
+	<path d="M 342 637 a 14 14 90 0 1 14 14 V 664 h -140 V 651 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 356 664.0 v 15 a 14 14 90 0 1 -14 14 H 230 a 14 14 90 0 1 -14 -14 V 664.0 H 140" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="216" y="637" width="140" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="216" y1="664" x2="356" y2="664" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="225" y="657.3" fill="#000000" font-family="Arial Black" font-size="13">SIMULATE BANK</text>
+</g>
+
+<!-- Association LINK BANK OUT -->
+<line x1="77" y1="825" x2="77" y2="1540" stroke="#8073ac" stroke-width="1.5"/>
+<text x="50.0" y="896" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="1540" x2="77" y2="1540" stroke="#8073ac" stroke-width="1.5"/>
+<text x="378" y="1557.0" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<g id="association-LINK BANK OUT">
+	<path d="M 131 1512 a 14 14 90 0 1 14 14 V 1539 h -136 V 1526 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 145 1539.0 v 15 a 14 14 90 0 1 -14 14 H 23 a 14 14 90 0 1 -14 -14 V 1539.0 H 136" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="9" y="1512" width="136" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="9" y1="1539" x2="145" y2="1539" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="18" y="1532.3" fill="#000000" font-family="Arial Black" font-size="13">LINK BANK OUT</text>
+</g>
+
+<!-- Association HISTORIZE -->
+<line x1="445" y1="297" x2="445" y2="171" stroke="#8073ac" stroke-width="1.5"/>
+<text x="451.0" y="216" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="63" x2="445" y2="171" stroke="#8073ac" stroke-width="1.5"/>
+<text x="451.0" y="134" fill="#b35806" font-family="Arial" font-size="12">1,1</text>
+<g id="association-HISTORIZE">
+	<path d="M 480 143 a 14 14 90 0 1 14 14 V 170 h -98 V 157 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 494 170.0 v 15 a 14 14 90 0 1 -14 14 H 410 a 14 14 90 0 1 -14 -14 V 170.0 H 98" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="396" y="143" width="98" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="396" y1="170" x2="494" y2="170" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="405" y="163.3" fill="#000000" font-family="Arial Black" font-size="13">HISTORIZE</text>
+</g>
+
+<!-- Association BELONG -->
+<line x1="77" y1="825" x2="445" y2="825" stroke="#8073ac" stroke-width="1.5"/>
+<text x="127" y="842.0" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="831" y1="825" x2="445" y2="825" stroke="#8073ac" stroke-width="1.5"/>
+<text x="763" y="842.0" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<g id="association-BELONG">
+	<path d="M 471 797 a 14 14 90 0 1 14 14 V 824 h -80 V 811 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 485 824.0 v 15 a 14 14 90 0 1 -14 14 H 419 a 14 14 90 0 1 -14 -14 V 824.0 H 80" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="405" y="797" width="80" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="405" y1="824" x2="485" y2="824" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="414" y="817.3" fill="#000000" font-family="Arial Black" font-size="13">BELONG</text>
+</g>
+
+<!-- Association LINK SAVING OUT -->
+<line x1="831" y1="825" x2="831" y2="1540" stroke="#8073ac" stroke-width="1.5"/>
+<text x="837.0" y="887" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="1540" x2="831" y2="1540" stroke="#8073ac" stroke-width="1.5"/>
+<text x="494" y="1557.0" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<g id="association-LINK SAVING OUT">
+	<path d="M 892 1512 a 14 14 90 0 1 14 14 V 1539 h -150 V 1526 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 906 1539.0 v 15 a 14 14 90 0 1 -14 14 H 770 a 14 14 90 0 1 -14 -14 V 1539.0 H 150" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="756" y="1512" width="150" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="756" y1="1539" x2="906" y2="1539" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="765" y="1532.3" fill="#000000" font-family="Arial Black" font-size="13">LINK SAVING OUT</text>
+</g>
+
+<!-- Association POSSESS BANK -->
+<line x1="445" y1="531" x2="77" y2="531" stroke="#8073ac" stroke-width="1.5"/>
+<text x="378" y="548.0" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="77" y1="825" x2="77" y2="531" stroke="#8073ac" stroke-width="1.5"/>
+<text x="53.0" y="762" fill="#b35806" font-family="Arial" font-size="12">1,1</text>
+<g id="association-POSSESS BANK">
+	<path d="M 129 503 a 14 14 90 0 1 14 14 V 530 h -132 V 517 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 143 530.0 v 15 a 14 14 90 0 1 -14 14 H 25 a 14 14 90 0 1 -14 -14 V 530.0 H 132" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="11" y="503" width="132" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="11" y1="530" x2="143" y2="530" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="20" y="523.3" fill="#000000" font-family="Arial Black" font-size="13">POSSESS BANK</text>
+</g>
+
+<!-- Association TAG OUT -->
+<line x1="445" y1="1540" x2="611" y2="1451" stroke="#8073ac" stroke-width="1.5"/>
+<text x="494" y="1528.92938396" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<line x1="611" y1="1361" x2="611" y2="1451" stroke="#8073ac" stroke-width="1.5"/>
+<text x="617.0" y="1414" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<g id="association-TAG OUT">
+	<path d="M 640 1423 a 14 14 90 0 1 14 14 V 1450 h -86 V 1437 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 654 1450.0 v 15 a 14 14 90 0 1 -14 14 H 582 a 14 14 90 0 1 -14 -14 V 1450.0 H 86" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="568" y="1423" width="86" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="568" y1="1450" x2="654" y2="1450" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="577" y="1443.3" fill="#000000" font-family="Arial Black" font-size="13">TAG OUT</text>
+</g>
+
+<!-- Association CATEGORIZE OUT -->
+<line x1="445" y1="1540" x2="286" y2="1451" stroke="#8073ac" stroke-width="1.5"/>
+<text x="378" y="1527.70532037" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<line x1="286" y1="1361" x2="286" y2="1451" stroke="#8073ac" stroke-width="1.5"/>
+<text x="292.0" y="1414" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<g id="association-CATEGORIZE OUT">
+	<path d="M 347 1423 a 14 14 90 0 1 14 14 V 1450 h -150 V 1437 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 361 1450.0 v 15 a 14 14 90 0 1 -14 14 H 225 a 14 14 90 0 1 -14 -14 V 1450.0 H 150" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="211" y="1423" width="150" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="211" y1="1450" x2="361" y2="1450" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="220" y="1443.3" fill="#000000" font-family="Arial Black" font-size="13">CATEGORIZE OUT</text>
+</g>
+
+<!-- Association TAG IN -->
+<line x1="445" y1="1182" x2="611" y2="1271" stroke="#8073ac" stroke-width="1.5"/>
+<text x="489" y="1198.38989315" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<line x1="611" y1="1361" x2="611" y2="1271" stroke="#8073ac" stroke-width="1.5"/>
+<text x="617.0" y="1316" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<g id="association-TAG IN">
+	<path d="M 632 1243 a 14 14 90 0 1 14 14 V 1270 h -70 V 1257 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 646 1270.0 v 15 a 14 14 90 0 1 -14 14 H 590 a 14 14 90 0 1 -14 -14 V 1270.0 H 70" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="576" y="1243" width="70" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="576" y1="1270" x2="646" y2="1270" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="585" y="1263.3" fill="#000000" font-family="Arial Black" font-size="13">TAG IN</text>
+</g>
+
+<!-- Association HAVE -->
+<line x1="445" y1="531" x2="445" y2="423" stroke="#8073ac" stroke-width="1.5"/>
+<text x="451.0" y="468" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="297" x2="445" y2="423" stroke="#8073ac" stroke-width="1.5"/>
+<text x="451.0" y="386" fill="#b35806" font-family="Arial" font-size="12">1,1</text>
+<g id="association-HAVE">
+	<path d="M 461 395 a 14 14 90 0 1 14 14 V 422 h -60 V 409 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 475 422.0 v 15 a 14 14 90 0 1 -14 14 H 429 a 14 14 90 0 1 -14 -14 V 422.0 H 60" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="415" y="395" width="60" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="415" y1="422" x2="475" y2="422" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="424" y="415.3" fill="#000000" font-family="Arial Black" font-size="13">HAVE</text>
+</g>
+
+<!-- Association SCHEDULE SAVING -->
+<line x1="831" y1="825" x2="611" y2="1012" stroke="#8073ac" stroke-width="1.5"/>
+<text x="760" y="860.915418875" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="1012" x2="611" y2="1012" stroke="#8073ac" stroke-width="1.5"/>
+<text x="505" y="1029.0" fill="#b35806" font-family="Arial" font-size="12">1,1</text>
+<g id="association-SCHEDULE SAVING">
+	<path d="M 676 984 a 14 14 90 0 1 14 14 V 1011 h -158 V 998 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 690 1011.0 v 15 a 14 14 90 0 1 -14 14 H 546 a 14 14 90 0 1 -14 -14 V 1011.0 H 158" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="532" y="984" width="158" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="532" y1="1011" x2="690" y2="1011" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="541" y="1004.3" fill="#000000" font-family="Arial Black" font-size="13">SCHEDULE SAVING</text>
+</g>
+
+<!-- Association SIMULATE SAVING -->
+<line x1="831" y1="825" x2="611" y2="665" stroke="#8073ac" stroke-width="1.5"/>
+<text x="760" y="803.386332933" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="665" x2="611" y2="665" stroke="#8073ac" stroke-width="1.5"/>
+<text x="499" y="682.0" fill="#b35806" font-family="Arial" font-size="12">1,1</text>
+<g id="association-SIMULATE SAVING">
+	<path d="M 675 637 a 14 14 90 0 1 14 14 V 664 h -156 V 651 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 689 664.0 v 15 a 14 14 90 0 1 -14 14 H 547 a 14 14 90 0 1 -14 -14 V 664.0 H 156" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="533" y="637" width="156" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="533" y1="664" x2="689" y2="664" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="542" y="657.3" fill="#000000" font-family="Arial Black" font-size="13">SIMULATE SAVING</text>
+</g>
+
+<!-- Association SCHEDULE BANK -->
+<line x1="77" y1="825" x2="286" y2="1012" stroke="#8073ac" stroke-width="1.5"/>
+<text x="127" y="863.187987201" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<line x1="445" y1="1012" x2="286" y2="1012" stroke="#8073ac" stroke-width="1.5"/>
+<text x="367" y="1029.0" fill="#b35806" font-family="Arial" font-size="12">1,1</text>
+<g id="association-SCHEDULE BANK">
+	<path d="M 344 984 a 14 14 90 0 1 14 14 V 1011 h -144 V 998 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 358 1011.0 v 15 a 14 14 90 0 1 -14 14 H 228 a 14 14 90 0 1 -14 -14 V 1011.0 H 144" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="214" y="984" width="144" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="214" y1="1011" x2="358" y2="1011" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="223" y="1004.3" fill="#000000" font-family="Arial Black" font-size="13">SCHEDULE BANK</text>
+</g>
+
+<!-- Association CATEGORIZE IN -->
+<line x1="445" y1="1182" x2="286" y2="1271" stroke="#8073ac" stroke-width="1.5"/>
+<text x="383" y="1199.49593749" fill="#b35806" font-family="Arial" font-size="12">0,1</text>
+<line x1="286" y1="1361" x2="286" y2="1271" stroke="#8073ac" stroke-width="1.5"/>
+<text x="292.0" y="1316" fill="#b35806" font-family="Arial" font-size="12">0,N</text>
+<g id="association-CATEGORIZE IN">
+	<path d="M 339 1243 a 14 14 90 0 1 14 14 V 1270 h -134 V 1257 a 14 14 90 0 1 14 -14" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+	<path d="M 353 1270.0 v 15 a 14 14 90 0 1 -14 14 H 233 a 14 14 90 0 1 -14 -14 V 1270.0 H 134" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+	<rect x="219" y="1243" width="134" height="56" fill="none" rx="14" stroke="#8073ac" stroke-width="3"/>
+	<line x1="219" y1="1270" x2="353" y2="1270" stroke="#8073ac" stroke-width="1.5"/>
+	<text x="228" y="1263.3" fill="#000000" font-family="Arial Black" font-size="13">CATEGORIZE IN</text>
+</g>
+
+<!-- Entity CATEGORY -->
+<g id="entity-CATEGORY">
+	<g id="frame-CATEGORY">
+		<rect x="237" y="1325" width="98" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="237" y="1353.0" width="98" height="44" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="237" y="1325" width="98" height="72" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="237" y1="1353" x2="335" y2="1353" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="245" y="1345.3" fill="#000000" font-family="Arial Black" font-size="13">CATEGORY</text>
+	<text x="245" y="1369.2" fill="#000000" font-family="Arial" font-size="14">ca_id</text>
+	<line x1="245" y1="1372" x2="281" y2="1372" stroke="#000000" stroke-width="1.2"/>
+	<text x="245" y="1387.2" fill="#000000" font-family="Arial" font-size="14">name</text>
+</g>
+
+<!-- Entity SAVING -->
+<g id="entity-SAVING">
+	<g id="frame-SAVING">
+		<rect x="787" y="780" width="88" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="787" y="808.0" width="88" height="62" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="787" y="780" width="88" height="90" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="787" y1="808" x2="875" y2="808" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="802" y="800.3" fill="#000000" font-family="Arial Black" font-size="13">SAVING</text>
+	<text x="795" y="824.2" fill="#000000" font-family="Arial" font-size="14">sa_id</text>
+	<line x1="795" y1="827" x2="831" y2="827" stroke="#000000" stroke-width="1.2"/>
+	<text x="795" y="842.2" fill="#000000" font-family="Arial" font-size="14">name</text>
+	<text x="795" y="860.2" fill="#000000" font-family="Arial" font-size="14">description</text>
+</g>
+
+<!-- Entity HISTORY_OBJECTIVE -->
+<g id="entity-HISTORY_OBJECTIVE">
+	<g id="frame-HISTORY_OBJECTIVE">
+		<rect x="359" y="9" width="172" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="359" y="37.0" width="172" height="80" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="359" y="9" width="172" height="108" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="359" y1="37" x2="531" y2="37" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="367" y="29.3" fill="#000000" font-family="Arial Black" font-size="13">HISTORY_OBJECTIVE</text>
+	<text x="367" y="53.2" fill="#000000" font-family="Arial" font-size="14">ho_id</text>
+	<line x1="367" y1="56" x2="404" y2="56" stroke="#000000" stroke-width="1.2"/>
+	<text x="367" y="71.2" fill="#000000" font-family="Arial" font-size="14">success</text>
+	<text x="367" y="89.2" fill="#000000" font-family="Arial" font-size="14">date</text>
+	<text x="367" y="107.2" fill="#000000" font-family="Arial" font-size="14">parameter</text>
+</g>
+
+<!-- Entity RECURRENT -->
+<g id="entity-RECURRENT">
+	<g id="frame-RECURRENT">
+		<rect x="391" y="931" width="108" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="391" y="959.0" width="108" height="134" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="391" y="931" width="108" height="162" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="391" y1="959" x2="499" y2="959" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="399" y="951.3" fill="#000000" font-family="Arial Black" font-size="13">RECURRENT</text>
+	<text x="399" y="975.2" fill="#000000" font-family="Arial" font-size="14">re_id</text>
+	<line x1="399" y1="978" x2="433" y2="978" stroke="#000000" stroke-width="1.2"/>
+	<text x="399" y="993.2" fill="#000000" font-family="Arial" font-size="14">amount</text>
+	<text x="399" y="1011.2" fill="#000000" font-family="Arial" font-size="14">libelle</text>
+	<text x="399" y="1029.2" fill="#000000" font-family="Arial" font-size="14">freq</text>
+	<text x="399" y="1047.2" fill="#000000" font-family="Arial" font-size="14">date</text>
+	<text x="399" y="1065.2" fill="#000000" font-family="Arial" font-size="14">next</text>
+	<text x="399" y="1083.2" fill="#000000" font-family="Arial" font-size="14">active</text>
+</g>
+
+<!-- Entity FORECAST -->
+<g id="entity-FORECAST">
+	<g id="frame-FORECAST">
+		<rect x="397" y="611" width="96" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="397" y="639.0" width="96" height="80" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="397" y="611" width="96" height="108" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="397" y1="639" x2="493" y2="639" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="405" y="631.3" fill="#000000" font-family="Arial Black" font-size="13">FORECAST</text>
+	<text x="405" y="655.2" fill="#000000" font-family="Arial" font-size="14">fo_id</text>
+	<line x1="405" y1="658" x2="438" y2="658" stroke="#000000" stroke-width="1.2"/>
+	<text x="405" y="673.2" fill="#000000" font-family="Arial" font-size="14">amount</text>
+	<text x="405" y="691.2" fill="#000000" font-family="Arial" font-size="14">libelle</text>
+	<text x="405" y="709.2" fill="#000000" font-family="Arial" font-size="14">date</text>
+</g>
+
+<!-- Entity TAG -->
+<g id="entity-TAG">
+	<g id="frame-TAG">
+		<rect x="584" y="1325" width="54" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="584" y="1353.0" width="54" height="44" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="584" y="1325" width="54" height="72" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="584" y1="1353" x2="638" y2="1353" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="595" y="1345.3" fill="#000000" font-family="Arial Black" font-size="13">TAG</text>
+	<text x="592" y="1369.2" fill="#000000" font-family="Arial" font-size="14">ta_id</text>
+	<line x1="592" y1="1372" x2="625" y2="1372" stroke="#000000" stroke-width="1.2"/>
+	<text x="592" y="1387.2" fill="#000000" font-family="Arial" font-size="14">name</text>
+</g>
+
+<!-- Entity USER -->
+<g id="entity-USER">
+	<g id="frame-USER">
+		<rect x="405" y="477" width="80" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="405" y="505.0" width="80" height="80" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="405" y="477" width="80" height="108" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="405" y1="505" x2="485" y2="505" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="424" y="497.3" fill="#000000" font-family="Arial Black" font-size="13">USER</text>
+	<text x="413" y="521.2" fill="#000000" font-family="Arial" font-size="14">us_id</text>
+	<line x1="413" y1="524" x2="449" y2="524" stroke="#000000" stroke-width="1.2"/>
+	<text x="413" y="539.2" fill="#000000" font-family="Arial" font-size="14">login</text>
+	<text x="413" y="557.2" fill="#000000" font-family="Arial" font-size="14">password</text>
+	<text x="413" y="575.2" fill="#000000" font-family="Arial" font-size="14">email</text>
+</g>
+
+<!-- Entity INCOME -->
+<g id="entity-INCOME">
+	<g id="frame-INCOME">
+		<rect x="407" y="1119" width="76" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="407" y="1147.0" width="76" height="98" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="407" y="1119" width="76" height="126" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="407" y1="1147" x2="483" y2="1147" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="415" y="1139.3" fill="#000000" font-family="Arial Black" font-size="13">INCOME</text>
+	<text x="415" y="1163.2" fill="#000000" font-family="Arial" font-size="14">in_id</text>
+	<line x1="415" y1="1166" x2="447" y2="1166" stroke="#000000" stroke-width="1.2"/>
+	<text x="415" y="1181.2" fill="#000000" font-family="Arial" font-size="14">amount</text>
+	<text x="415" y="1199.2" fill="#000000" font-family="Arial" font-size="14">libelle</text>
+	<text x="415" y="1217.2" fill="#000000" font-family="Arial" font-size="14">date</text>
+	<text x="415" y="1235.2" fill="#000000" font-family="Arial" font-size="14">check</text>
+</g>
+
+<!-- Entity OBJECTIVE -->
+<g id="entity-OBJECTIVE">
+	<g id="frame-OBJECTIVE">
+		<rect x="395" y="225" width="100" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="395" y="253.0" width="100" height="116" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="395" y="225" width="100" height="144" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="395" y1="253" x2="495" y2="253" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="403" y="245.3" fill="#000000" font-family="Arial Black" font-size="13">OBJECTIVE</text>
+	<text x="403" y="269.2" fill="#000000" font-family="Arial" font-size="14">on_id</text>
+	<line x1="403" y1="272" x2="440" y2="272" stroke="#000000" stroke-width="1.2"/>
+	<text x="403" y="287.2" fill="#000000" font-family="Arial" font-size="14">type</text>
+	<text x="403" y="305.2" fill="#000000" font-family="Arial" font-size="14">freq</text>
+	<text x="403" y="323.2" fill="#000000" font-family="Arial" font-size="14">date</text>
+	<text x="403" y="341.2" fill="#000000" font-family="Arial" font-size="14">next</text>
+	<text x="403" y="359.2" fill="#000000" font-family="Arial" font-size="14">parameter</text>
+</g>
+
+<!-- Entity EXPENSE -->
+<g id="entity-EXPENSE">
+	<g id="frame-EXPENSE">
+		<rect x="402" y="1477" width="86" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="402" y="1505.0" width="86" height="98" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="402" y="1477" width="86" height="126" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="402" y1="1505" x2="488" y2="1505" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="410" y="1497.3" fill="#000000" font-family="Arial Black" font-size="13">EXPENSE</text>
+	<text x="410" y="1521.2" fill="#000000" font-family="Arial" font-size="14">ex_id</text>
+	<line x1="410" y1="1524" x2="446" y2="1524" stroke="#000000" stroke-width="1.2"/>
+	<text x="410" y="1539.2" fill="#000000" font-family="Arial" font-size="14">amount</text>
+	<text x="410" y="1557.2" fill="#000000" font-family="Arial" font-size="14">libelle</text>
+	<text x="410" y="1575.2" fill="#000000" font-family="Arial" font-size="14">date</text>
+	<text x="410" y="1593.2" fill="#000000" font-family="Arial" font-size="14">check</text>
+</g>
+
+<!-- Entity BANK -->
+<g id="entity-BANK">
+	<g id="frame-BANK">
+		<rect x="33" y="771" width="88" height="28" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+		<rect x="33" y="799.0" width="88" height="80" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+		<rect x="33" y="771" width="88" height="108" fill="none" stroke="#e08214" stroke-width="3"/>
+		<line x1="33" y1="799" x2="121" y2="799" stroke="#e08214" stroke-width="1.5"/>
+	</g>
+	<text x="55" y="791.3" fill="#000000" font-family="Arial Black" font-size="13">BANK</text>
+	<text x="41" y="815.2" fill="#000000" font-family="Arial" font-size="14">ba_id</text>
+	<line x1="41" y1="818" x2="78" y2="818" stroke="#000000" stroke-width="1.2"/>
+	<text x="41" y="833.2" fill="#000000" font-family="Arial" font-size="14">name</text>
+	<text x="41" y="851.2" fill="#000000" font-family="Arial" font-size="14">description</text>
+	<text x="41" y="869.2" fill="#000000" font-family="Arial" font-size="14">primary</text>
+</g>
+</svg>

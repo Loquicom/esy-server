@@ -1,0 +1,22 @@
+{
+    "databaseChangeLog": [
+        {
+            "include": {
+                "file": "changelog/loquicom-01-create.sql",
+                "relativeToChangelogFile": true
+            }
+        },
+        {
+            "include": {
+                "file": "changelog/loquicom-02-foreign.json",
+                "relativeToChangelogFile": true
+            }
+        },
+        {
+            "include": {
+                "file": "changelog/loquicom-03-objective.json",
+                "relativeToChangelogFile": true
+            }
+        }
+    ]
+}

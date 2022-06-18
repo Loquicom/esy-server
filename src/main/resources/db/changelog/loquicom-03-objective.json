@@ -1,0 +1,136 @@
+{
+    "databaseChangeLog": [
+        {
+            "changeSet": {
+                "id": "03",
+                "author": "loquicom",
+                "changes": [
+                    {
+                        "createTable": {
+                            "tableName": "history_objective",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "ho_id",
+                                        "type": "serial",
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "success",
+                                        "type": "boolean"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "date",
+                                        "type": "date"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "parameter",
+                                        "type": "text"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "ob_id",
+                                        "type": "serial",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "createTable": {
+                            "tableName": "objective",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "ob_id",
+                                        "type": "serial",
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "type",
+                                        "type": "varchar(10)"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "freq",
+                                        "type": "varchar(5)"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "date",
+                                        "type": "date"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "next",
+                                        "type": "date"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "parameter",
+                                        "type": "text"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "us_id",
+                                        "type": "serial",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_historyObjective_objective",
+                            "baseColumnNames": "ob_id",
+                            "baseTableName": "history_objective",
+                            "referencedColumnNames": "ob_id",
+                            "referencedTableName": "objective",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_objective_users",
+                            "baseColumnNames": "us_id",
+                            "baseTableName": "objective",
+                            "referencedColumnNames": "us_id",
+                            "referencedTableName": "users",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

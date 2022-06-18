@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <span class='relation'>HISTORY_OBJECTIVE</span> (
+    <span class='primary'>ho_id</span>,
+    <span class='normal'>success</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>parameter</span>,
+    <span class='foreign'>on_id</span>
+  )
+</div>
+<div>
+  <span class='relation'>OBJECTIVE</span> (
+    <span class='primary'>on_id</span>,
+    <span class='normal'>type</span>,
+    <span class='normal'>freq</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>next</span>,
+    <span class='normal'>parameter</span>,
+    <span class='foreign'>us_id</span>
+  )
+</div>
+<div>
+  <span class='relation'>USER</span> (
+    <span class='primary'>us_id</span>,
+    <span class='normal'>login</span>,
+    <span class='normal'>password</span>,
+    <span class='normal'>email</span>
+  )
+</div>
+<div>
+  <span class='relation'>FORECAST</span> (
+    <span class='primary'>fo_id</span>,
+    <span class='normal'>amount</span>,
+    <span class='normal'>libelle</span>,
+    <span class='normal'>date</span>,
+    <span class='foreign'>ba_id</span>,
+    <span class='foreign'>sa_id</span>
+  )
+</div>
+<div>
+  <span class='relation'>BANK</span> (
+    <span class='primary'>ba_id</span>,
+    <span class='normal'>name</span>,
+    <span class='normal'>description</span>,
+    <span class='normal'>primary</span>,
+    <span class='foreign'>us_id</span>
+  )
+</div>
+<div>
+  <span class='relation'>SAVING</span> (
+    <span class='primary'>sa_id</span>,
+    <span class='normal'>name</span>,
+    <span class='normal'>description</span>,
+    <span class='foreign'>us_id</span>,
+    <span class='foreign'>ba_id</span>
+  )
+</div>
+<div>
+  <span class='relation'>RECURRENT</span> (
+    <span class='primary'>re_id</span>,
+    <span class='normal'>amount</span>,
+    <span class='normal'>libelle</span>,
+    <span class='normal'>freq</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>next</span>,
+    <span class='normal'>active</span>,
+    <span class='foreign'>sa_id</span>,
+    <span class='foreign'>ba_id</span>
+  )
+</div>
+<div>
+  <span class='relation'>INCOME</span> (
+    <span class='primary'>in_id</span>,
+    <span class='normal'>amount</span>,
+    <span class='normal'>libelle</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>check</span>,
+    <span class='foreign'>sa_id</span>,
+    <span class='foreign'>ba_id</span>,
+    <span class='foreign'>ta_id</span>,
+    <span class='foreign'>ca_id</span>
+  )
+</div>
+<div>
+  <span class='relation'>CATEGORY</span> (
+    <span class='primary'>ca_id</span>,
+    <span class='normal'>name</span>
+  )
+</div>
+<div>
+  <span class='relation'>TAG</span> (
+    <span class='primary'>ta_id</span>,
+    <span class='normal'>name</span>
+  )
+</div>
+<div>
+  <span class='relation'>EXPENSE</span> (
+    <span class='primary'>ex_id</span>,
+    <span class='normal'>amount</span>,
+    <span class='normal'>libelle</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>check</span>,
+    <span class='foreign'>ba_id</span>,
+    <span class='foreign'>sa_id</span>,
+    <span class='foreign'>ta_id</span>,
+    <span class='foreign'>ca_id</span>
+  )
+</div>
+</div>
+</body>
+</html>

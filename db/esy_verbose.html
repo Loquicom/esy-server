@@ -1,0 +1,197 @@
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+  #mld .relation { font-variant: small-caps; font-weight: bold }
+  #mld .primary { text-decoration: underline }
+  #mld .foreign { font-style: oblique }
+  #mld .normal { }
+  #mld strong { font-weight: bold }
+  #mld i { font-style: italic }
+  #mld ul { list-style-type:square; margin: 0 0 1em 2em }
+</style>
+</head>
+<body>
+<div id='mld'>
+<div>
+  <span class='relation'>HISTORY_OBJECTIVE</span> (
+    <span class='primary'>ho_id</span>,
+    <span class='normal'>success</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>parameter</span>,
+    <span class='foreign'>on_id</span>
+  )
+  <ul>
+    <li>Le champ <i>ho_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>HISTORY_OBJECTIVE</i>.</li>
+    <li>Les champs <i>success</i>, <i>date</i> et <i>parameter</i> étaient déjà de simples attributs de l'entité <i>HISTORY_OBJECTIVE</i>.</li>
+    <li>Le champ <i>on_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>OBJECTIVE</i> par l'association de dépendance fonctionnelle <i>HISTORIZE</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>OBJECTIVE</span> (
+    <span class='primary'>on_id</span>,
+    <span class='normal'>type</span>,
+    <span class='normal'>freq</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>next</span>,
+    <span class='normal'>parameter</span>,
+    <span class='foreign'>us_id</span>
+  )
+  <ul>
+    <li>Le champ <i>on_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>OBJECTIVE</i>.</li>
+    <li>Les champs <i>type</i>, <i>freq</i>, <i>date</i>, <i>next</i> et <i>parameter</i> étaient déjà de simples attributs de l'entité <i>OBJECTIVE</i>.</li>
+    <li>Le champ <i>us_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>USER</i> par l'association de dépendance fonctionnelle <i>HAVE</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>USER</span> (
+    <span class='primary'>us_id</span>,
+    <span class='normal'>login</span>,
+    <span class='normal'>password</span>,
+    <span class='normal'>email</span>
+  )
+  <ul>
+    <li>Le champ <i>us_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>USER</i>.</li>
+    <li>Les champs <i>login</i>, <i>password</i> et <i>email</i> étaient déjà de simples attributs de l'entité <i>USER</i>.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>FORECAST</span> (
+    <span class='primary'>fo_id</span>,
+    <span class='normal'>amount</span>,
+    <span class='normal'>libelle</span>,
+    <span class='normal'>date</span>,
+    <span class='foreign'>ba_id</span>,
+    <span class='foreign'>sa_id</span>
+  )
+  <ul>
+    <li>Le champ <i>fo_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>FORECAST</i>.</li>
+    <li>Les champs <i>amount</i>, <i>libelle</i> et <i>date</i> étaient déjà de simples attributs de l'entité <i>FORECAST</i>.</li>
+    <li>Le champ <i>ba_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>BANK</i> par l'association de dépendance fonctionnelle <i>SIMULATE BANK</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>sa_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>SAVING</i> par l'association de dépendance fonctionnelle <i>SIMULATE SAVING</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>BANK</span> (
+    <span class='primary'>ba_id</span>,
+    <span class='normal'>name</span>,
+    <span class='normal'>description</span>,
+    <span class='normal'>primary</span>,
+    <span class='foreign'>us_id</span>
+  )
+  <ul>
+    <li>Le champ <i>ba_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>BANK</i>.</li>
+    <li>Les champs <i>name</i>, <i>description</i> et <i>primary</i> étaient déjà de simples attributs de l'entité <i>BANK</i>.</li>
+    <li>Le champ <i>us_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>USER</i> par l'association de dépendance fonctionnelle <i>POSSESS BANK</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>SAVING</span> (
+    <span class='primary'>sa_id</span>,
+    <span class='normal'>name</span>,
+    <span class='normal'>description</span>,
+    <span class='foreign'>us_id</span>,
+    <span class='foreign'>ba_id</span>
+  )
+  <ul>
+    <li>Le champ <i>sa_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>SAVING</i>.</li>
+    <li>Les champs <i>name</i> et <i>description</i> étaient déjà de simples attributs de l'entité <i>SAVING</i>.</li>
+    <li>Le champ <i>us_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>USER</i> par l'association de dépendance fonctionnelle <i>POSSESS SAVING</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>ba_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>BANK</i> par l'association de dépendance fonctionnelle <i>BELONG</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>RECURRENT</span> (
+    <span class='primary'>re_id</span>,
+    <span class='normal'>amount</span>,
+    <span class='normal'>libelle</span>,
+    <span class='normal'>freq</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>next</span>,
+    <span class='normal'>active</span>,
+    <span class='foreign'>sa_id</span>,
+    <span class='foreign'>ba_id</span>
+  )
+  <ul>
+    <li>Le champ <i>re_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>RECURRENT</i>.</li>
+    <li>Les champs <i>amount</i>, <i>libelle</i>, <i>freq</i>, <i>date</i>, <i>next</i> et <i>active</i> étaient déjà de simples attributs de l'entité <i>RECURRENT</i>.</li>
+    <li>Le champ <i>sa_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>SAVING</i> par l'association de dépendance fonctionnelle <i>SCHEDULE SAVING</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>ba_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>BANK</i> par l'association de dépendance fonctionnelle <i>SCHEDULE BANK</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>INCOME</span> (
+    <span class='primary'>in_id</span>,
+    <span class='normal'>amount</span>,
+    <span class='normal'>libelle</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>check</span>,
+    <span class='foreign'>sa_id</span>,
+    <span class='foreign'>ba_id</span>,
+    <span class='foreign'>ta_id</span>,
+    <span class='foreign'>ca_id</span>
+  )
+  <ul>
+    <li>Le champ <i>in_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>INCOME</i>.</li>
+    <li>Les champs <i>amount</i>, <i>libelle</i>, <i>date</i> et <i>check</i> étaient déjà de simples attributs de l'entité <i>INCOME</i>.</li>
+    <li>Le champ <i>sa_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>SAVING</i> par l'association de dépendance fonctionnelle <i>LINK SAVING IN</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>ba_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>BANK</i> par l'association de dépendance fonctionnelle <i>LINK BANK IN</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>ta_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>TAG</i> par l'association de dépendance fonctionnelle <i>TAG IN</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>ca_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>CATEGORY</i> par l'association de dépendance fonctionnelle <i>CATEGORIZE IN</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>CATEGORY</span> (
+    <span class='primary'>ca_id</span>,
+    <span class='normal'>name</span>
+  )
+  <ul>
+    <li>Le champ <i>ca_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>CATEGORY</i>.</li>
+    <li>Le champ <i>name</i> était déjà un simple attribut de l'entité <i>CATEGORY</i>.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>TAG</span> (
+    <span class='primary'>ta_id</span>,
+    <span class='normal'>name</span>
+  )
+  <ul>
+    <li>Le champ <i>ta_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>TAG</i>.</li>
+    <li>Le champ <i>name</i> était déjà un simple attribut de l'entité <i>TAG</i>.</li>
+  </ul>
+</div>
+
+<div>
+  <span class='relation'>EXPENSE</span> (
+    <span class='primary'>ex_id</span>,
+    <span class='normal'>amount</span>,
+    <span class='normal'>libelle</span>,
+    <span class='normal'>date</span>,
+    <span class='normal'>check</span>,
+    <span class='foreign'>ba_id</span>,
+    <span class='foreign'>sa_id</span>,
+    <span class='foreign'>ta_id</span>,
+    <span class='foreign'>ca_id</span>
+  )
+  <ul>
+    <li>Le champ <i>ex_id</i> constitue la clef primaire de la table. C'était déjà un identifiant de l'entité <i>EXPENSE</i>.</li>
+    <li>Les champs <i>amount</i>, <i>libelle</i>, <i>date</i> et <i>check</i> étaient déjà de simples attributs de l'entité <i>EXPENSE</i>.</li>
+    <li>Le champ <i>ba_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>BANK</i> par l'association de dépendance fonctionnelle <i>LINK BANK OUT</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>sa_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>SAVING</i> par l'association de dépendance fonctionnelle <i>LINK SAVING OUT</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>ta_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>TAG</i> par l'association de dépendance fonctionnelle <i>TAG OUT</i> en perdant son caractère identifiant.</li>
+    <li>Le champ <i>ca_id</i> est une clef étrangère. Il a migré à partir de l'entité <i>CATEGORY</i> par l'association de dépendance fonctionnelle <i>CATEGORIZE OUT</i> en perdant son caractère identifiant.</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

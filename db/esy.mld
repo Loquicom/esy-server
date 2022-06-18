@@ -1,0 +1,54 @@
+%%mocodo
+:::::
+HISTORY_OBJECTIVE: ho_id, success, date, parameter, #on_id->OBJECTIVE->on_id
+:::::
+
+
+
+:::::
+OBJECTIVE: on_id, type, freq, date, next, parameter, #us_id->USER->us_id
+:::::
+
+
+
+:::::
+USER: us_id, login, password, email
+:::::
+
+
+:::::
+FORECAST: fo_id, amount, libelle, date, #ba_id->BANK->ba_id, #sa_id->SAVING->sa_id
+:::::
+
+
+
+:
+BANK: ba_id, name, description, primary, #us_id->USER->us_id
+:::::::
+SAVING: sa_id, name, description, #us_id->USER->us_id, #ba_id->BANK->ba_id
+:
+
+
+
+:::::
+RECURRENT: re_id, amount, libelle, freq, date, next, active, #sa_id->SAVING->sa_id, #ba_id->BANK->ba_id
+:::::
+
+
+:::::
+INCOME: in_id, amount, libelle, date, check, #sa_id->SAVING->sa_id, #ba_id->BANK->ba_id, #ta_id->TAG->ta_id, #ca_id->CATEGORY->ca_id
+:::::
+
+
+
+:::
+CATEGORY: ca_id, name
+:::
+TAG: ta_id, name
+:::
+
+
+
+:::::
+EXPENSE: ex_id, amount, libelle, date, check, #ba_id->BANK->ba_id, #sa_id->SAVING->sa_id, #ta_id->TAG->ta_id, #ca_id->CATEGORY->ca_id
+:::::
