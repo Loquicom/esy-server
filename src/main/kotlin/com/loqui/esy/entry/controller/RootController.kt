@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull
 @RestController
 @RequestMapping("/")
 @CrossOrigin
-class DefaultController {
+class RootController {
 
     @Operation(summary = "Display server info")
     @ApiResponses(
