@@ -23,7 +23,10 @@
                                 {
                                     "column": {
                                         "name": "code",
-                                        "type": "varchar(10)"
+                                        "type": "varchar(10)",
+                                        "constraints": {
+                                            "unique": true
+                                        }
                                     }
                                 },
                                 {
@@ -54,8 +57,7 @@
                                 {
                                     "column": {
                                         "name": "ho_id",
-                                        "type": "serial",
-                                        "autoIncrement": true,
+                                        "type": "UUID",
                                         "constraints": {
                                             "primaryKey": true,
                                             "nullable": false
@@ -89,7 +91,7 @@
                                 {
                                     "column": {
                                         "name": "ob_id",
-                                        "type": "serial",
+                                        "type": "UUID",
                                         "constraints": {
                                             "nullable": false
                                         }
@@ -105,8 +107,7 @@
                                 {
                                     "column": {
                                         "name": "ob_id",
-                                        "type": "serial",
-                                        "autoIncrement": true,
+                                        "type": "UUID",
                                         "constraints": {
                                             "primaryKey": true,
                                             "nullable": false
@@ -151,8 +152,8 @@
                                 },
                                 {
                                     "column": {
-                                        "name": "us_id",
-                                        "type": "serial",
+                                        "name": "type",
+                                        "type": "varchar(10)",
                                         "constraints": {
                                             "nullable": false
                                         }
@@ -160,8 +161,8 @@
                                 },
                                 {
                                     "column": {
-                                        "name": "to_id",
-                                        "type": "serial",
+                                        "name": "us_id",
+                                        "type": "UUID",
                                         "constraints": {
                                             "nullable": false
                                         }
@@ -195,9 +196,9 @@
                     {
                         "addForeignKeyConstraint": {
                             "constraintName": "fk_objective_typeObjective",
-                            "baseColumnNames": "to_id",
+                            "baseColumnNames": "type",
                             "baseTableName": "objective",
-                            "referencedColumnNames": "to_id",
+                            "referencedColumnNames": "code",
                             "referencedTableName": "type_objective",
                             "onUpdate": "RESTRICT",
                             "onDelete": "CASCADE"
