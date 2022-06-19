@@ -7,6 +7,48 @@
                 "changes": [
                     {
                         "createTable": {
+                            "tableName": "type_objective",
+                            "columns": [
+                                {
+                                    "column": {
+                                        "name": "to_id",
+                                        "type": "serial",
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "code",
+                                        "type": "varchar(10)"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "libelle",
+                                        "type": "varchar(500)"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "description",
+                                        "type": "text"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "account",
+                                        "type": "text"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "createTable": {
                             "tableName": "history_objective",
                             "columns": [
                                 {
@@ -28,14 +70,20 @@
                                 },
                                 {
                                     "column": {
-                                        "name": "date",
-                                        "type": "date"
+                                        "name": "amount",
+                                        "type": "decimal"
                                     }
                                 },
                                 {
                                     "column": {
-                                        "name": "parameter",
-                                        "type": "text"
+                                        "name": "account",
+                                        "type": "varchar(10)"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "date",
+                                        "type": "date"
                                     }
                                 },
                                 {
@@ -67,7 +115,13 @@
                                 },
                                 {
                                     "column": {
-                                        "name": "type",
+                                        "name": "amount",
+                                        "type": "decimal"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "account",
                                         "type": "varchar(10)"
                                     }
                                 },
@@ -91,13 +145,22 @@
                                 },
                                 {
                                     "column": {
-                                        "name": "parameter",
-                                        "type": "text"
+                                        "name": "active",
+                                        "type": "boolean"
                                     }
                                 },
                                 {
                                     "column": {
                                         "name": "us_id",
+                                        "type": "serial",
+                                        "constraints": {
+                                            "nullable": false
+                                        }
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "to_id",
                                         "type": "serial",
                                         "constraints": {
                                             "nullable": false
@@ -125,6 +188,17 @@
                             "baseTableName": "objective",
                             "referencedColumnNames": "us_id",
                             "referencedTableName": "users",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_objective_typeObjective",
+                            "baseColumnNames": "to_id",
+                            "baseTableName": "objective",
+                            "referencedColumnNames": "to_id",
+                            "referencedTableName": "type_objective",
                             "onUpdate": "RESTRICT",
                             "onDelete": "CASCADE"
                         }

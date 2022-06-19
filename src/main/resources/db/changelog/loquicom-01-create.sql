@@ -71,15 +71,19 @@ CREATE TABLE income
 
 CREATE TABLE category
 (
-    ca_id SERIAL,
-    name  VARCHAR(500),
+    ca_id   SERIAL,
+    name    VARCHAR(500),
+    income  BOOLEAN,
+    expense BOOLEAN,
     PRIMARY KEY (ca_id)
 );
 
 CREATE TABLE tag
 (
-    ta_id SERIAL,
-    name  VARCHAR(500),
+    ta_id   SERIAL,
+    name    VARCHAR(500),
+    income  BOOLEAN,
+    expense BOOLEAN,
     PRIMARY KEY (ta_id)
 );
 
@@ -96,4 +100,3 @@ CREATE TABLE expense
     ca_id   SERIAL,
     PRIMARY KEY (ex_id)
 );
-

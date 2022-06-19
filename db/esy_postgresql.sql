@@ -3,27 +3,40 @@ CREATE DATABASE ESY;
 
 CREATE TABLE HISTORY_OBJECTIVE
 (
-    ho_id     SERIAL,
-    success   BOOLEAN,
-    date      DATE,
-    parameter TEXT,
-    ob_id     SERIAL,
+    ho_id   SERIAL,
+    success BOOLEAN,
+    amount  DECIMAL,
+    account VARCHAR(10),
+    date    DATE,
+    ob_id   SERIAL,
     PRIMARY KEY (ho_id)
+);
+
+CREATE TABLE TYPE_OBJECTIVE
+(
+    to_id       SERIAL,
+    code        VARCHAR(10),
+    libelle     VARCHAR(500),
+    description TEXT,
+    account     TEXT,
+    PRIMARY KEY (to_id)
 );
 
 CREATE TABLE OBJECTIVE
 (
-    ob_id     SERIAL,
-    type      VARCHAR(10),
-    freq      VARCHAR(5),
-    date      DATE,
-    next      DATE,
-    parameter TEXT,
-    us_id     SERIAL,
+    ob_id   SERIAL,
+    amount  DECIMAL,
+    account VARCHAR(10),
+    freq    VARCHAR(5),
+    date    DATE,
+    next    DATE,
+    active  BOOLEAN,
+    us_id   SERIAL,
+    to_id   SERIAL,
     PRIMARY KEY (ob_id)
 );
 
-CREATE TABLE "USER"
+CREATE TABLE USERS
 (
     us_id    SERIAL,
     login    VARCHAR(500),
@@ -93,15 +106,19 @@ CREATE TABLE INCOME
 
 CREATE TABLE CATEGORY
 (
-    ca_id SERIAL,
-    name  VARCHAR(500),
+    ca_id   SERIAL,
+    name    VARCHAR(500),
+    income  BOOLEAN,
+    expense BOOLEAN,
     PRIMARY KEY (ca_id)
 );
 
 CREATE TABLE TAG
 (
-    ta_id SERIAL,
-    name  VARCHAR(500),
+    ta_id   SERIAL,
+    name    VARCHAR(500),
+    income  BOOLEAN,
+    expense BOOLEAN,
     PRIMARY KEY (ta_id)
 );
 
@@ -122,17 +139,19 @@ CREATE TABLE EXPENSE
 ALTER TABLE HISTORY_OBJECTIVE
     ADD FOREIGN KEY (ob_id) REFERENCES OBJECTIVE (ob_id);
 ALTER TABLE OBJECTIVE
-    ADD FOREIGN KEY (us_id) REFERENCES "USER" (us_id);
+    ADD FOREIGN KEY (to_id) REFERENCES TYPE_OBJECTIVE (to_id);
+ALTER TABLE OBJECTIVE
+    ADD FOREIGN KEY (us_id) REFERENCES USERS (us_id);
 ALTER TABLE FORECAST
     ADD FOREIGN KEY (sa_id) REFERENCES SAVING (sa_id);
 ALTER TABLE FORECAST
     ADD FOREIGN KEY (ba_id) REFERENCES BANK (ba_id);
 ALTER TABLE BANK
-    ADD FOREIGN KEY (us_id) REFERENCES "USER" (us_id);
+    ADD FOREIGN KEY (us_id) REFERENCES USERS (us_id);
 ALTER TABLE SAVING
     ADD FOREIGN KEY (ba_id) REFERENCES BANK (ba_id);
 ALTER TABLE SAVING
-    ADD FOREIGN KEY (us_id) REFERENCES "USER" (us_id);
+    ADD FOREIGN KEY (us_id) REFERENCES USERS (us_id);
 ALTER TABLE RECURRENT
     ADD FOREIGN KEY (ba_id) REFERENCES BANK (ba_id);
 ALTER TABLE RECURRENT
