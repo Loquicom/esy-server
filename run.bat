@@ -10,7 +10,7 @@ IF NOT [%M2_HOME%]==[] (
 )
 
 IF [%1]==[] (
-    echo "Usage: %0 {test|build|build_start|start|stop|reset|purge|tail|tail_db|tail_server|tail_all|cli_db|cli_server}"
+    echo "Usage: %0 {test|build|build_start|start|stop|reset|purge|tail|tail_db|tail_server|tail_all|cli_db|cli_server|start_embed}"
     GOTO END
 )
 
@@ -79,7 +79,11 @@ IF %1==cli_server (
     CALL :cli_server
     GOTO END
 )
-echo "Usage: %0 {test|build|build_start|start|stop|reset|purge|tail|tail_db|tail_server|tail_all|cli_db|cli_server}"
+IF %1==start_embed (
+    CALL :embed
+    GOTO END
+)
+echo "Usage: %0 {test|build|build_start|start|stop|reset|purge|tail|tail_db|tail_server|tail_all|cli_db|cli_server|start_embed}"
 :END
 EXIT /B %ERRORLEVEL%
 
@@ -130,4 +134,8 @@ EXIT /B 0
 
 :dli_server
     docker exec -it esy-server /bin/sh
+EXIT /B 0
+
+:embed
+  java -Dspring.profiles.active=embeddb -jar target/*-SNAPSHOT.jar
 EXIT /B 0

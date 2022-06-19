@@ -57,6 +57,10 @@ cli_server() {
     docker exec -it esy-server /bin/sh
 }
 
+embed() {
+  java -Dspring.profiles.active=embeddb -jar target/*-SNAPSHOT.jar
+}
+
 case "$1" in
   test)
     test
@@ -106,6 +110,9 @@ case "$1" in
   cli_server)
     cli_server
     ;;
+  start_embed)
+    embed
+    ;;
   *)
-    echo "Usage: $0 {test|build|build_start|start|stop|reset|purge|tail|tail_db|tail_server|tail_all|cli_db|cli_server}"
+    echo "Usage: $0 {test|build|build_start|start|stop|reset|purge|tail|tail_db|tail_server|tail_all|cli_db|cli_server|start_embed}"
 esac
