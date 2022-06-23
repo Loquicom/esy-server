@@ -17,6 +17,12 @@
                 "file": "changelog/loquicom-03-objective.json",
                 "relativeToChangelogFile": true
             }
+        },
+        {
+            "include": {
+                "file": "changelog/loquicom-04-insert.sql",
+                "relativeToChangelogFile": true
+            }
         }
     ]
 }
