@@ -116,8 +116,26 @@
                                 },
                                 {
                                     "column": {
+                                        "name": "compare_with",
+                                        "type": "varchar(5)"
+                                    }
+                                },
+                                {
+                                    "column": {
                                         "name": "amount",
                                         "type": "decimal"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "category",
+                                        "type": "UUID"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "name": "tag",
+                                        "type": "UUID"
                                     }
                                 },
                                 {
@@ -200,6 +218,28 @@
                             "baseTableName": "objective",
                             "referencedColumnNames": "code",
                             "referencedTableName": "type_objective",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_objective_category",
+                            "baseColumnNames": "category",
+                            "baseTableName": "objective",
+                            "referencedColumnNames": "ca_id",
+                            "referencedTableName": "category",
+                            "onUpdate": "RESTRICT",
+                            "onDelete": "CASCADE"
+                        }
+                    },
+                    {
+                        "addForeignKeyConstraint": {
+                            "constraintName": "fk_objective_tag",
+                            "baseColumnNames": "tag",
+                            "baseTableName": "objective",
+                            "referencedColumnNames": "ta_id",
+                            "referencedTableName": "tag",
                             "onUpdate": "RESTRICT",
                             "onDelete": "CASCADE"
                         }
