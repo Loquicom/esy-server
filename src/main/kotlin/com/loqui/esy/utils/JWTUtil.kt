@@ -14,11 +14,12 @@ import java.util.*
 
 @Component
 class JWTUtil(
-    @Value("\${security.jwt.key}") private val base64key: String
+    @Value("\${security.jwt.key}") private val base64key: String? = null
 ) {
 
     private val key: Key by lazy {
-        readKey(this.base64key)
+        val key = this.base64key ?: createKey()
+        readKey(key)
     }
 
     fun generate(user: UserDTO, role: String? = null): String {
@@ -70,6 +71,10 @@ class JWTUtil(
             payload.get("login", String::class.java),
             payload.get("email", String::class.java)
         )
+    }
+
+    fun getKey(): String {
+        return Encoders.BASE64.encode(this.key.encoded)
     }
 
     private fun createKey(): String {
