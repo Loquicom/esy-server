@@ -7,6 +7,8 @@ CREATE TABLE users
     login    VARCHAR(500),
     password VARCHAR(255),
     email    VARCHAR(500),
+    role     VARCHAR(500),
+    enabled  BOOLEAN DEFAULT true,
     PRIMARY KEY (us_id)
 );
 

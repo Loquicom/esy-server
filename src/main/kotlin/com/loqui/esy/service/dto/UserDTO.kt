@@ -5,5 +5,6 @@ import java.util.*
 data class UserDTO(
     val id: UUID,
     val login: String,
-    val email: String
+    val email: String,
+    val role: List<String>
 )

@@ -22,7 +22,7 @@ class JWTUtil(
         readKey(key)
     }
 
-    fun generate(user: UserDTO, role: String? = null): String {
+    fun generate(user: UserDTO): String {
         // Calc expiration date
         val calendar = Calendar.getInstance()
         calendar.time = Date()
@@ -34,11 +34,9 @@ class JWTUtil(
             .claim("id", user.id.toString())
             .claim("login", user.login)
             .claim("email", user.email)
+            .claim("role", user.role.joinToString { "," })
             .setExpiration(calendar.time)
             .signWith(this.key, SignatureAlgorithm.HS256)
-        if (role != null) {
-            builder.claim("role", role)
-        }
         return builder.compact()
     }
 
@@ -69,7 +67,8 @@ class JWTUtil(
         return UserDTO(
             UUID.fromString(payload.get("id", String::class.java)),
             payload.get("login", String::class.java),
-            payload.get("email", String::class.java)
+            payload.get("email", String::class.java),
+            payload.get("role", String::class.java).split(",")
         )
     }
 

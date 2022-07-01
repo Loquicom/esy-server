@@ -2,9 +2,10 @@ package com.loqui.esy.utils.mapper.user
 
 import com.loqui.esy.repository.entity.User
 import com.loqui.esy.service.dto.UserDTO
+import com.loqui.esy.utils.PASSWORD_FOR_DTO
 
 fun toDTO(entity: User): UserDTO {
-    return UserDTO(entity.id, entity.login, entity.email)
+    return UserDTO(entity.id, entity.login, entity.email, entity.role.split(","))
 }
 
 fun toDTO(entity: List<User>): List<UserDTO> {
@@ -12,7 +13,7 @@ fun toDTO(entity: List<User>): List<UserDTO> {
 }
 
 fun toEntity(dto: UserDTO): User {
-    return User(dto.id, dto.login, "from-dto", dto.email)
+    return User(dto.id, dto.login, PASSWORD_FOR_DTO, dto.email, dto.role.joinToString { "," }, true)
 }
 
 fun toEntity(dto: List<UserDTO>): List<User> {

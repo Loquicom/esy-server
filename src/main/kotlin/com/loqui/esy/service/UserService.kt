@@ -5,12 +5,12 @@ import com.loqui.esy.repository.entity.User
 import com.loqui.esy.service.dto.LoginRequest
 import com.loqui.esy.service.dto.LoginView
 import com.loqui.esy.service.dto.RegisterRequest
+import com.loqui.esy.utils.DEFAULT_ROLE
 import com.loqui.esy.utils.JWTUtil
 import com.loqui.esy.utils.mapper.user.toDTO
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*
@@ -30,7 +30,8 @@ class UserService(
             UUID.randomUUID(),
             request.login,
             password,
-            request.email
+            request.email,
+            DEFAULT_ROLE
         )
         repository.save(user)
         val token = jwtUtil.generate(toDTO(user))
@@ -42,10 +43,7 @@ class UserService(
     fun login(request: LoginRequest): LoginView {
         val authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(request.login, request.password))
         val user: User = authentication.principal as User
-        val scope: String = authentication.authorities.stream()
-            .map { obj: GrantedAuthority -> obj.authority }
-            .toList().joinToString { "," }
-        val token = jwtUtil.generate(toDTO(user), scope)
+        val token = jwtUtil.generate(toDTO(user))
         return LoginView(
             token
         )
