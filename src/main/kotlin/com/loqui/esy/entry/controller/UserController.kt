@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 
 @CrossOrigin
 @RestController
-@RequestMapping("/users")
+@RequestMapping("\${api.path.root}/users")
 class UserController(
     @Autowired private val service: UserService
 ) {
