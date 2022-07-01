@@ -56,6 +56,7 @@ class SecurityConfig(
 
         // Set permissions on endpoints
         http.authorizeHttpRequests()
+            .antMatchers("/openapi/**").permitAll()
             .antMatchers("/users/register").permitAll()
             .antMatchers("/users/login").permitAll()
             .anyRequest().authenticated()
