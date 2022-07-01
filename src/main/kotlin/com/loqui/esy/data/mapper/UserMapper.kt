@@ -1,7 +1,7 @@
 package com.loqui.esy.utils.mapper.user
 
-import com.loqui.esy.repository.entity.User
-import com.loqui.esy.service.dto.UserDTO
+import com.loqui.esy.data.entity.User
+import com.loqui.esy.data.dto.UserDTO
 import com.loqui.esy.utils.PASSWORD_FOR_DTO
 
 fun toDTO(entity: User): UserDTO {

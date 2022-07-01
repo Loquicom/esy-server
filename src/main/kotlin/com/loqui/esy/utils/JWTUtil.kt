@@ -1,7 +1,7 @@
 package com.loqui.esy.utils
 
+import com.loqui.esy.data.dto.UserDTO
 import com.loqui.esy.exception.EsyTokenException
-import com.loqui.esy.service.dto.UserDTO
 import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.io.Encoders

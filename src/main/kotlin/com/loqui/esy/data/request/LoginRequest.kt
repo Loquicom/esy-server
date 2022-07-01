@@ -1,4 +1,4 @@
-package com.loqui.esy.service.dto
+package com.loqui.esy.data.request
 
 data class LoginRequest(
     val login: String,

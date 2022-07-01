@@ -4,7 +4,7 @@
 CREATE TABLE users
 (
     us_id    UUID,
-    login    VARCHAR(500),
+    login    VARCHAR(500) UNIQUE,
     password VARCHAR(255),
     email    VARCHAR(500),
     role     VARCHAR(500),

@@ -1,4 +1,4 @@
-package com.loqui.esy.repository.entity
+package com.loqui.esy.data.entity
 
 import com.loqui.esy.utils.KEYWORD_ROLE
 import com.loqui.esy.utils.PASSWORD_FOR_CREDENTIALS_CONTAINER

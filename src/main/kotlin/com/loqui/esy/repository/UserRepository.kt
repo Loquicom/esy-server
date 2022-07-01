@@ -1,6 +1,6 @@
 package com.loqui.esy.repository
 
-import com.loqui.esy.repository.entity.User
+import com.loqui.esy.data.entity.User
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 import java.util.*

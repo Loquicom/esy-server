@@ -1,10 +1,12 @@
 package com.loqui.esy.entry.controller
 
+import com.loqui.esy.data.request.LoginRequest
+import com.loqui.esy.data.request.RegisterRequest
+import com.loqui.esy.data.view.ResponseView
 import com.loqui.esy.service.UserService
-import com.loqui.esy.service.dto.LoginRequest
-import com.loqui.esy.service.dto.LoginView
-import com.loqui.esy.service.dto.RegisterRequest
+import com.loqui.esy.utils.response
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @CrossOrigin
@@ -15,13 +17,13 @@ class UserController(
 ) {
 
     @PostMapping("register")
-    fun register(@RequestBody request: RegisterRequest): LoginView {
-        return service.register(request)
+    fun register(@RequestBody request: RegisterRequest): ResponseEntity<ResponseView<*>> {
+        return response(service.register(request))
     }
 
     @PostMapping("login")
-    fun login(@RequestBody request: LoginRequest): LoginView {
-        return service.login(request)
+    fun login(@RequestBody request: LoginRequest): ResponseEntity<ResponseView<*>> {
+        return response(service.login(request))
     }
 
     @GetMapping("/hello")
