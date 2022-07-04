@@ -26,9 +26,4 @@ class UserController(
         return response(service.login(request))
     }
 
-    @GetMapping("/hello")
-    fun hello(): String {
-        return "Hello !!!"
-    }
-
 }
