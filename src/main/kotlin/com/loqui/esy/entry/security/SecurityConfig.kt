@@ -2,6 +2,7 @@ package com.loqui.esy.entry.security
 
 import com.loqui.esy.entry.filter.JWTFilter
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.AuthenticationManager
@@ -25,7 +26,8 @@ import javax.servlet.http.HttpServletResponse
 @EnableWebSecurity
 class SecurityConfig(
     @Autowired private val esyUserDetailService: EsyUserDetailService,
-    @Autowired private val jwtFilter: JWTFilter
+    @Autowired private val jwtFilter: JWTFilter,
+    @Value("\${api.path.root}") private val apiRoot: String
 ) {
 
     @Bean
@@ -56,9 +58,9 @@ class SecurityConfig(
 
         // Set permissions on endpoints
         http.authorizeHttpRequests()
-            .antMatchers("/openapi/**").permitAll()
-            .antMatchers("/users/register").permitAll()
-            .antMatchers("/users/login").permitAll()
+            .antMatchers("${this.apiRoot}/openapi/**").permitAll()
+            .antMatchers("${this.apiRoot}/users/register").permitAll()
+            .antMatchers("${this.apiRoot}/users/login").permitAll()
             .anyRequest().authenticated()
 
         // Add JWT token filter

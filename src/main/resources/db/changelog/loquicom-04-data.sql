@@ -20,5 +20,3 @@ VALUES ('goal+', 'Avoir augmenté le solde', 'À la fin de la période le solde 
 INSERT INTO type_objective(code, libelle, description, account)
 VALUES ('goal-', 'Avoir diminué le solde', 'À la fin de la période le solde doit avoir diminué d''un montant minimum',
         'acct,save,catg,tag');
-
-

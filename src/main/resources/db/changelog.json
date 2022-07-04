@@ -20,7 +20,13 @@
         },
         {
             "include": {
-                "file": "changelog/loquicom-04-insert.sql",
+                "file": "changelog/loquicom-04-data.sql",
+                "relativeToChangelogFile": true
+            }
+        },
+        {
+            "include": {
+                "file": "changelog/loquicom-05-admin.sql",
                 "relativeToChangelogFile": true
             }
         }
