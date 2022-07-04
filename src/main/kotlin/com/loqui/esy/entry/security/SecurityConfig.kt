@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse
 class SecurityConfig(
     @Autowired private val esyUserDetailService: EsyUserDetailService,
     @Autowired private val jwtFilter: JWTFilter,
-    @Value("\${api.path.root}") private val apiRoot: String
+    @Value("\${api.path.root}") private val apiRootPath: String
 ) {
 
     @Bean
@@ -58,9 +58,11 @@ class SecurityConfig(
 
         // Set permissions on endpoints
         http.authorizeHttpRequests()
-            .antMatchers("${this.apiRoot}/openapi/**").permitAll()
-            .antMatchers("${this.apiRoot}/users/register").permitAll()
-            .antMatchers("${this.apiRoot}/users/login").permitAll()
+            .antMatchers("${this.apiRootPath}/openapi/**").permitAll()
+            .antMatchers("${this.apiRootPath}/ping").permitAll()
+            .antMatchers("${this.apiRootPath}/say/**").permitAll()
+            .antMatchers("${this.apiRootPath}/users/register").permitAll()
+            .antMatchers("${this.apiRootPath}/users/login").permitAll()
             .anyRequest().authenticated()
 
         // Add JWT token filter

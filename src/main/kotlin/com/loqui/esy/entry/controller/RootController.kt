@@ -66,4 +66,18 @@ class RootController {
         return "Esy server: $word"
     }
 
+    @Operation(summary = "Test authentification")
+    @ApiResponses(
+        value = [
+            ApiResponse(
+                responseCode = "200",
+                content = [(Content(mediaType = "text/plain"))]
+            )
+        ]
+    )
+    @GetMapping("/auth")
+    fun hello(): String {
+        return "You are authentified"
+    }
+
 }
