@@ -1,6 +1,6 @@
-package com.loqui.esy.entry.security
+package com.loqui.esy.config.security
 
-import com.loqui.esy.entry.filter.JWTFilter
+import com.loqui.esy.config.security.filter.JWTFilter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean

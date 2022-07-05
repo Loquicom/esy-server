@@ -1,4 +1,4 @@
-package com.loqui.esy.entry.security
+package com.loqui.esy.config.security
 
 import com.loqui.esy.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired

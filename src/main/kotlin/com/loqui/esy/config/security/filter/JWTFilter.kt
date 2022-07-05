@@ -1,6 +1,6 @@
-package com.loqui.esy.entry.filter
+package com.loqui.esy.config.security.filter
 
-import com.loqui.esy.entry.security.EsyUserDetailService
+import com.loqui.esy.config.security.EsyUserDetailService
 import com.loqui.esy.exception.EsyTokenException
 import com.loqui.esy.utils.JWTUtil
 import org.springframework.beans.factory.annotation.Autowired
