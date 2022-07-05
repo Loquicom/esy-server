@@ -2,10 +2,7 @@ package com.loqui.esy.entry.controller
 
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.data.wrapper.ResultWrapper
-import com.loqui.esy.maker.makeRegisterRequest
-import com.loqui.esy.maker.makeWrappedLoginView
-import com.loqui.esy.maker.toJSON
-import com.loqui.esy.maker.toResponse
+import com.loqui.esy.maker.*
 import com.loqui.esy.service.UserService
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
@@ -48,6 +45,36 @@ class UserControllerTest : ControllerTest() {
         mockMvc
             .perform(
                 post("$path/register").contentType(MediaType.APPLICATION_JSON)
+                    .content(toJSON(request))
+            )
+            .andExpect(status().isUnauthorized)
+            .andExpect(content().json(toJSON(response)))
+    }
+
+    @Test
+    fun loginSuccessTest() {
+        val request = makeLoginRequest()
+        val result = makeWrappedLoginView()
+        val response = toResponse(result)
+        Mockito.`when`(service.login(request)).thenReturn(result)
+        mockMvc
+            .perform(
+                post("$path/login").contentType(MediaType.APPLICATION_JSON)
+                    .content(toJSON(request))
+            )
+            .andExpect(status().isOk)
+            .andExpect(content().json(toJSON(response)))
+    }
+
+    @Test
+    fun loginFailTest() {
+        val request = makeLoginRequest()
+        val result = ResultWrapper(EsyError.AUTHENTIFICATION)
+        val response = toResponse(result)
+        Mockito.`when`(service.login(request)).thenReturn(result)
+        mockMvc
+            .perform(
+                post("$path/login").contentType(MediaType.APPLICATION_JSON)
                     .content(toJSON(request))
             )
             .andExpect(status().isUnauthorized)
