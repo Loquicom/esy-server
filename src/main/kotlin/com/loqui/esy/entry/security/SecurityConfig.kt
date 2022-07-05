@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 import org.springframework.web.filter.CorsFilter
+import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -58,7 +59,7 @@ class SecurityConfig(
 
         // Set permissions on endpoints
         http.authorizeHttpRequests()
-            .antMatchers("${this.apiRootPath}/openapi/**").permitAll()
+            .antMatchers("/openapi/**").permitAll()
             .antMatchers("${this.apiRootPath}/ping").permitAll()
             .antMatchers("${this.apiRootPath}/say/**").permitAll()
             .antMatchers("${this.apiRootPath}/users/register").permitAll()
@@ -80,9 +81,9 @@ class SecurityConfig(
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
         config.allowCredentials = true
-        config.addAllowedOrigin("*")
-        config.addAllowedHeader("*")
-        config.addAllowedMethod("*")
+        config.allowedOriginPatterns = Collections.singletonList("*")
+        config.allowedHeaders = Collections.singletonList("*")
+        config.allowedMethods = Collections.singletonList("*")
         source.registerCorsConfiguration("/**", config)
         return CorsFilter(source)
     }
