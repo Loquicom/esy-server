@@ -4,8 +4,12 @@ data class ResultWrapper<T>(
     val data: T
 ) {
 
-    val success: Boolean by lazy {
+    val isSuccess: Boolean by lazy {
         this.data !is EsyError
+    }
+
+    val isError: Boolean by lazy {
+        this.data is EsyError
     }
 
 }

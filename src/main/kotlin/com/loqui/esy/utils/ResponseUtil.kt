@@ -7,7 +7,7 @@ import com.loqui.esy.data.wrapper.ResultWrapper
 import org.springframework.http.ResponseEntity
 
 fun <T> response(result: ResultWrapper<T>): ResponseEntity<ResponseView<*>> {
-    return if (result.success) {
+    return if (result.isSuccess) {
         success(result) as ResponseEntity<ResponseView<*>>
     } else {
         error(result as ResultWrapper<EsyError>) as ResponseEntity<ResponseView<*>>
