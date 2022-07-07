@@ -6,7 +6,6 @@ import com.loqui.esy.data.request.LoginRequest
 import com.loqui.esy.data.request.RegisterRequest
 import com.loqui.esy.data.view.LoginView
 import com.loqui.esy.data.view.ResponseView
-import com.loqui.esy.data.wrapper.ResultWrapper
 import java.util.*
 
 fun makeUser(i: Int? = null): User {
@@ -54,13 +53,9 @@ fun makeLoginView(i: Int? = null): LoginView {
     )
 }
 
-fun makeWrappedLoginView(i: Int? = null): ResultWrapper<LoginView> {
-    return wrapper(makeLoginView(i))
-}
-
 fun toLoginView(result: ResponseView<Map<String, Any>>): LoginView {
     if (!result.success) {
-        // TODO throw error
+        throw IllegalArgumentException("Invalid response, success is false")
     }
     return LoginView(
         result.data["token"] as String

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.loqui.esy.data.view.ErrorView
 import com.loqui.esy.data.view.ResponseView
 import com.loqui.esy.data.wrapper.EsyError
-import com.loqui.esy.data.wrapper.ResultWrapper
 
 val objectMapper = ObjectMapper()
 
@@ -15,32 +14,20 @@ fun getPrefix(i: Int?): String {
     return ""
 }
 
-fun <T> wrapper(obj: T): ResultWrapper<T> {
-    return ResultWrapper(obj)
-}
-
-
-fun <T> toResponse(obj: ResultWrapper<T>): ResponseView<*> {
-    return if (obj.isSuccess) {
-        toSuccessResponse(obj)
-    } else {
-        toErrorResponse(obj as ResultWrapper<EsyError>)
-    }
-}
-
-fun <T> toSuccessResponse(obj: ResultWrapper<T>): ResponseView<T> {
+fun <T> toResponse(data: T): ResponseView<T> {
     return ResponseView(
         true,
-        obj.data
+        data
     )
 }
 
-fun toErrorResponse(error: ResultWrapper<EsyError>): ResponseView<ErrorView> {
+fun toResponse(error: EsyError): ResponseView<ErrorView> {
     return ResponseView(
         false,
-        ErrorView(error.data.code, error.data.message)
+        ErrorView(error.code, error.message)
     )
 }
+
 
 fun <T> toJSON(obj: T): String {
     return objectMapper.writeValueAsString(obj)

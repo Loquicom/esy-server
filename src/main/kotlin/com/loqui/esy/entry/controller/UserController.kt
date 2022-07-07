@@ -2,6 +2,7 @@ package com.loqui.esy.entry.controller
 
 import com.loqui.esy.data.request.LoginRequest
 import com.loqui.esy.data.request.RegisterRequest
+import com.loqui.esy.data.view.LoginView
 import com.loqui.esy.data.view.ResponseView
 import com.loqui.esy.service.UserService
 import com.loqui.esy.utils.response
@@ -17,12 +18,12 @@ class UserController(
 ) {
 
     @PostMapping("register")
-    fun register(@RequestBody request: RegisterRequest): ResponseEntity<ResponseView<*>> {
+    fun register(@RequestBody request: RegisterRequest): ResponseEntity<ResponseView<LoginView>> {
         return response(service.register(request))
     }
 
     @PostMapping("login")
-    fun login(@RequestBody request: LoginRequest): ResponseEntity<ResponseView<*>> {
+    fun login(@RequestBody request: LoginRequest): ResponseEntity<ResponseView<LoginView>> {
         return response(service.login(request))
     }
 

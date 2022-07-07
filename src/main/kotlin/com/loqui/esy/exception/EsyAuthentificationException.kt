@@ -3,12 +3,12 @@ package com.loqui.esy.exception
 import com.loqui.esy.data.wrapper.EsyError
 import org.springframework.http.HttpStatus
 
-open class EsySecurityException(
+class EsyAuthentificationException(
     message: String? = null,
     code: Int = 0,
     status: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR,
     throwable: Throwable? = null
-) : EsyException(message, code, status, throwable) {
+) : EsySecurityException(message, code, status, throwable) {
 
     constructor(error: EsyError, throwable: Throwable? = null) : this(error.message, error.code, error.status, throwable)
 

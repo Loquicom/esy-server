@@ -5,7 +5,7 @@ import com.loqui.esy.data.request.LoginRequest
 import com.loqui.esy.data.request.RegisterRequest
 import com.loqui.esy.data.view.LoginView
 import com.loqui.esy.data.wrapper.EsyError
-import com.loqui.esy.data.wrapper.ResultWrapper
+import com.loqui.esy.exception.EsyAuthentificationException
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.DEFAULT_ROLE
 import com.loqui.esy.utils.JWTUtil
@@ -27,11 +27,12 @@ class UserService(
     @Autowired private val jwtUtil: JWTUtil
 ) {
 
-    fun register(request: RegisterRequest): ResultWrapper<*> {
+    @Throws(EsyAuthentificationException::class)
+    fun register(request: RegisterRequest): LoginView {
         // Check if user exist
         val optUser = repository.findByLogin(request.login)
         if (optUser.isPresent) {
-            return ResultWrapper(EsyError.REGISTER_LOGIN_ALREADY_EXIST)
+            throw EsyAuthentificationException(EsyError.REGISTER_LOGIN_ALREADY_EXIST)
         }
         // Create user
         val password = passwordEncoder.encode(request.password)
@@ -44,21 +45,18 @@ class UserService(
         )
         repository.save(user)
         val token = jwtUtil.generate(toDTO(user))
-        return ResultWrapper(
-            LoginView(token)
-        )
+        return LoginView(token)
     }
 
-    fun login(request: LoginRequest): ResultWrapper<*> {
-        return try {
+    @Throws(EsyAuthentificationException::class)
+    fun login(request: LoginRequest): LoginView {
+        try {
             val authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(request.login, request.password))
             val user: User = authentication.principal as User
             val token = jwtUtil.generate(toDTO(user))
-            ResultWrapper(
-                LoginView(token)
-            )
+            return LoginView(token)
         } catch (ex: BadCredentialsException) {
-            ResultWrapper(EsyError.AUTHENTIFICATION)
+            throw EsyAuthentificationException(EsyError.AUTHENTIFICATION, ex)
         }
 
     }
