@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*
 import javax.validation.constraints.NotNull
 
 @RestController
-@RequestMapping("\${api.path.root}")
+@RequestMapping("\${esy.api.root-path}")
 @CrossOrigin
 class RootController {
 

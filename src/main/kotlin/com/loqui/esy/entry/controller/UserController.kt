@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 
 @CrossOrigin
 @RestController
-@RequestMapping("\${api.path.root}/users")
+@RequestMapping("\${esy.api.root-path}/users")
 class UserController(
     @Autowired private val service: UserService
 ) {

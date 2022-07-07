@@ -15,7 +15,7 @@ abstract class ControllerTest {
     @Autowired
     protected lateinit var mockMvc: MockMvc
 
-    @Value("\${api.path.root}")
+    @Value("\${esy.api.root-path}")
     protected lateinit var rootPath: String
 
 }
