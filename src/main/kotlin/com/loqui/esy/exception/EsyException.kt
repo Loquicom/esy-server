@@ -22,12 +22,12 @@ open class EsyException(
         this.trace.add(trace)
     }
 
-    fun trace(): String {
-        return this.trace.joinToString { "\n" }
+    fun trace(): List<String> {
+        return this.trace
     }
 
-    fun getTrace(): List<String> {
-        return this.trace
+    fun traceToString(): String {
+        return this.trace.joinToString { "\n" }
     }
 
     fun toErrorView(): ErrorView {
@@ -35,7 +35,7 @@ open class EsyException(
         return ErrorView(
             this.code,
             message,
-            this.getTrace()
+            this.trace()
         )
     }
 
