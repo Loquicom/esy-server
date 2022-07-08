@@ -5,7 +5,7 @@ import com.loqui.esy.data.request.LoginRequest
 import com.loqui.esy.data.request.RegisterRequest
 import com.loqui.esy.data.view.LoginView
 import com.loqui.esy.data.wrapper.EsyError
-import com.loqui.esy.exception.EsyAuthentificationException
+import com.loqui.esy.exception.EsyAuthenticationException
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.DEFAULT_ROLE
 import com.loqui.esy.utils.JWTUtil
@@ -27,12 +27,12 @@ class UserService(
     @Autowired private val jwtUtil: JWTUtil
 ) {
 
-    @Throws(EsyAuthentificationException::class)
+    @Throws(EsyAuthenticationException::class)
     fun register(request: RegisterRequest): LoginView {
         // Check if user exist
         val optUser = repository.findByLogin(request.login)
         if (optUser.isPresent) {
-            throw EsyAuthentificationException(EsyError.REGISTER_LOGIN_ALREADY_EXIST)
+            throw EsyAuthenticationException(EsyError.REGISTER_LOGIN_ALREADY_EXIST)
         }
         // Create user
         val password = passwordEncoder.encode(request.password)
@@ -48,7 +48,7 @@ class UserService(
         return LoginView(token)
     }
 
-    @Throws(EsyAuthentificationException::class)
+    @Throws(EsyAuthenticationException::class)
     fun login(request: LoginRequest): LoginView {
         try {
             val authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(request.login, request.password))
@@ -56,7 +56,7 @@ class UserService(
             val token = jwtUtil.generate(toDTO(user))
             return LoginView(token)
         } catch (ex: BadCredentialsException) {
-            throw EsyAuthentificationException(EsyError.AUTHENTIFICATION, ex)
+            throw EsyAuthenticationException(EsyError.AUTHENTICATION, ex)
         }
 
     }

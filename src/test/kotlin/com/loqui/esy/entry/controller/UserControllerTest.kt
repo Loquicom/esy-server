@@ -1,7 +1,7 @@
 package com.loqui.esy.entry.controller
 
 import com.loqui.esy.data.wrapper.EsyError
-import com.loqui.esy.exception.EsyAuthentificationException
+import com.loqui.esy.exception.EsyAuthenticationException
 import com.loqui.esy.maker.*
 import com.loqui.esy.service.UserService
 import org.junit.jupiter.api.Test
@@ -41,7 +41,7 @@ class UserControllerTest : ControllerTest() {
         val request = makeRegisterRequest()
         val result = EsyError.REGISTER_LOGIN_ALREADY_EXIST
         val response = toResponse(result)
-        Mockito.`when`(service.register(request)).thenThrow(EsyAuthentificationException(result))
+        Mockito.`when`(service.register(request)).thenThrow(EsyAuthenticationException(result))
         mockMvc
             .perform(
                 post("$path/register").contentType(MediaType.APPLICATION_JSON)
@@ -69,9 +69,9 @@ class UserControllerTest : ControllerTest() {
     @Test
     fun loginFailTest() {
         val request = makeLoginRequest()
-        val result = EsyError.AUTHENTIFICATION
+        val result = EsyError.AUTHENTICATION
         val response = toResponse(result)
-        Mockito.`when`(service.login(request)).thenThrow(EsyAuthentificationException(result))
+        Mockito.`when`(service.login(request)).thenThrow(EsyAuthenticationException(result))
         mockMvc
             .perform(
                 post("$path/login").contentType(MediaType.APPLICATION_JSON)
