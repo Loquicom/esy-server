@@ -3,7 +3,7 @@ package com.loqui.esy.exception
 import com.loqui.esy.data.wrapper.EsyError
 import org.springframework.http.HttpStatus
 
-class EsyAuthentificationException(
+class EsyAuthenticationException(
     message: String? = null,
     code: Int = 0,
     status: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR,

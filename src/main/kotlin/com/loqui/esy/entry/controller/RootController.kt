@@ -66,7 +66,7 @@ class RootController {
         return "Esy server: $word"
     }
 
-    @Operation(summary = "Test authentification")
+    @Operation(summary = "Test authentication")
     @ApiResponses(
         value = [
             ApiResponse(

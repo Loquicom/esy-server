@@ -9,5 +9,5 @@ enum class EsyError(
 ) {
     UNKNOWN(0, "Unknown error", HttpStatus.INTERNAL_SERVER_ERROR),
     REGISTER_LOGIN_ALREADY_EXIST(1, "Login already exist", HttpStatus.UNAUTHORIZED),
-    AUTHENTIFICATION(2, "Unable to authenticate user", HttpStatus.UNAUTHORIZED)
+    AUTHENTICATION(2, "Unable to authenticate user", HttpStatus.UNAUTHORIZED)
 }
