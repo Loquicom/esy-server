@@ -60,6 +60,7 @@ class SecurityConfig(
         // Set permissions on endpoints
         http.authorizeHttpRequests()
             .antMatchers("/openapi/**").permitAll()
+            .antMatchers("${this.rootPath}/").permitAll()
             .antMatchers("${this.rootPath}/ping").permitAll()
             .antMatchers("${this.rootPath}/say/**").permitAll()
             .antMatchers("${this.rootPath}/users/register").permitAll()
