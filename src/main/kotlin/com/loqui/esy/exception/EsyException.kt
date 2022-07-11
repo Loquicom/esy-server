@@ -18,8 +18,14 @@ open class EsyException(
 
     constructor(message: String? = null, throwable: Throwable? = null) : this(message, 0, HttpStatus.INTERNAL_SERVER_ERROR, throwable)
 
-    fun trace(trace: String) {
+    fun trace(trace: String): EsyException {
         this.trace.add(trace)
+        return this
+    }
+
+    fun trace(trace: List<String>): EsyException {
+        this.trace.addAll(trace)
+        return this
     }
 
     fun trace(): List<String> {

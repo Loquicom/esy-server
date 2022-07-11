@@ -9,7 +9,7 @@ val objectMapper = ObjectMapper()
 
 fun getPrefix(i: Int?): String {
     if (i != null) {
-        return "-$i"
+        return "$i-"
     }
     return ""
 }
