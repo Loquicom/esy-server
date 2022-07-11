@@ -28,7 +28,7 @@ fun makeUser(uuid: UUID, i: Int? = null): User {
     return User(
         uuid,
         prefix + LOGIN,
-        prefix + PASSWORD,
+        prefix + PASSWORD_ENCODED,
         prefix + EMAIL,
         ROLE
     )
