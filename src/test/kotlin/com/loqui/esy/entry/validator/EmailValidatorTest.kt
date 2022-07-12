@@ -18,6 +18,15 @@ class EmailValidatorTest : ValidatorTest() {
     @Test
     fun validTest() {
         assertThat(validator.isValid(EMAIL)).isTrue
+        assertThat(validator.isValid("1-$EMAIL")).isTrue
+    }
+
+    @Test
+    fun validListTest() {
+        val list = ArrayList<String>()
+        list.add(EMAIL)
+        list.add("1-$EMAIL")
+        assertThat(validator.isValid(list)).isTrue
     }
 
     @Test
@@ -28,5 +37,14 @@ class EmailValidatorTest : ValidatorTest() {
         assertThat(validator.isValid("invalid@email.c")).isFalse
         assertThat(validator.isValid("invalid@email.company")).isFalse
         assertThat(validator.isValid("invalid@.email.com")).isFalse
+    }
+
+    @Test
+    fun notValidListTest() {
+        val list = ArrayList<String>()
+        list.add(EMAIL)
+        list.add("invalid@email.company")
+        list.add("1-$EMAIL")
+        assertThat(validator.isValid(list)).isFalse
     }
 }
