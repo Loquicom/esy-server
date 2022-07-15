@@ -19,8 +19,9 @@ fun makeUser(i: Int? = null): User {
     return makeUser(UUID.randomUUID(), i)
 }
 
-fun makeUser(uuid: String, i: Int? = null): User {
-    return makeUser(UUID.fromString(uuid), i)
+fun makeUser(id: String, i: Int? = null): User {
+    val uuid = toUUID(id)
+    return makeUser(uuid, i)
 }
 
 fun makeUser(uuid: UUID, i: Int? = null): User {

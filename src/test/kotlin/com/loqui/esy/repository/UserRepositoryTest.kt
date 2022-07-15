@@ -1,9 +1,6 @@
 package com.loqui.esy.repository
 
-import com.loqui.esy.maker.EMAIL
-import com.loqui.esy.maker.ID
-import com.loqui.esy.maker.LOGIN
-import com.loqui.esy.maker.makeUser
+import com.loqui.esy.maker.*
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -24,7 +21,8 @@ class UserRepositoryTest : RepositoryTest() {
     @Test
     fun findByIdTest() {
         val user = makeUser(ID)
-        val result = repository.findById(UUID.fromString(ID))
+        val uuid = toUUID(ID)
+        val result = repository.findById(uuid)
         assertThat(result.isPresent).isTrue
         assertThat(result.get()).isEqualTo(user)
     }
