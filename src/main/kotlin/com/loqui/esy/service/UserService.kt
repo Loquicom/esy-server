@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*
@@ -59,6 +60,13 @@ class UserService(
             throw EsyAuthenticationException(EsyError.AUTHENTICATION, ex)
         }
 
+    }
+
+    fun refresh(): LoginView {
+        val login = SecurityContextHolder.getContext().authentication.principal as String
+        val user = repository.findByLogin(login).orElseThrow { EsyAuthenticationException("Unable to find user with login: $login") }
+        val token = jwtUtil.generate(toDTO(user))
+        return LoginView(token)
     }
 
 }

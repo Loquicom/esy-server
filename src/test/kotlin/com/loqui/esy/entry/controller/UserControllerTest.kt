@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
+import org.springframework.security.test.context.support.WithUserDetails
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
@@ -119,5 +121,25 @@ class UserControllerTest : ControllerTest() {
             .andExpect(status().isBadRequest)
             .andExpect(content().json(toJSON(response)))
     }
+
+    @Test
+    @WithUserDetails(LOGIN)
+    fun refreshTest() {
+        val result = makeLoginView()
+        val response = toResponse(result)
+        Mockito.`when`(service.refresh()).thenReturn(result)
+        mockMvc
+            .perform(put("$path/refresh"))
+            .andExpect(status().isOk)
+            .andExpect(content().json(toJSON(response)))
+    }
+
+    @Test
+    fun refreshUnauthorizedTest() {
+        mockMvc
+            .perform(put("$path/refresh"))
+            .andExpect(status().isUnauthorized)
+    }
+
 
 }

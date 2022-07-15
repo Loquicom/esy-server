@@ -1,11 +1,14 @@
 package com.loqui.esy.maker.impl
 
 import com.loqui.esy.maker.ID
+import com.loqui.esy.maker.LOGIN
 import com.loqui.esy.maker.makeUser
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 
-class TestAuthentication : Authentication {
+class TestAuthentication(
+    private val principalType: String = "user"
+) : Authentication {
 
     override fun getName(): String {
         TODO("Not yet implemented")
@@ -24,7 +27,10 @@ class TestAuthentication : Authentication {
     }
 
     override fun getPrincipal(): Any {
-        return makeUser(ID)
+        return when (principalType) {
+            "string" -> LOGIN
+            else -> makeUser(ID)
+        }
     }
 
     override fun isAuthenticated(): Boolean {

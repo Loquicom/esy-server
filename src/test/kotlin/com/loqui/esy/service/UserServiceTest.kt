@@ -4,6 +4,7 @@ import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.exception.EsyAuthenticationException
 import com.loqui.esy.maker.*
 import com.loqui.esy.maker.impl.TestAuthentication
+import com.loqui.esy.maker.impl.TestContext
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.JWTUtil
 import org.assertj.core.api.Assertions.assertThat
@@ -15,6 +16,8 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.context.SecurityContext
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
 import java.util.*
 
@@ -100,6 +103,22 @@ class UserServiceTest : ServiceTest() {
         assertThat(ex.trace()).isEmpty()
         assertThat(ex.throwable).isNotNull
         assertThat(ex.throwable?.javaClass).isEqualTo(BadCredentialsException::class.java)
+    }
+
+    @Test
+    fun refreshTest() {
+        val user = makeUser()
+        val context = TestContext()
+        val userDto = convertUser(user)
+        val expected = makeLoginView()
+
+        Mockito.mockStatic(SecurityContextHolder::class.java).`when`<SecurityContext>(SecurityContextHolder::getContext).thenReturn(context)
+        Mockito.`when`(userRepository.findByLogin(user.login)).thenReturn(Optional.of(user))
+        Mockito.`when`(jwtUtil.generate(userDto)).thenReturn(JWT_TOKEN)
+
+        val result = service.refresh()
+        assertThat(result).isEqualTo(expected)
+
     }
 
 

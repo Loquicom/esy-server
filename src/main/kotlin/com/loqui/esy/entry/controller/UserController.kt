@@ -11,6 +11,7 @@ import com.loqui.esy.utils.response
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.security.Principal
 
 @CrossOrigin
 @RestController
@@ -31,6 +32,11 @@ class UserController(
     fun login(@RequestBody request: LoginRequest): ResponseEntity<ResponseView<LoginView>> {
         loginValidator.isValidOrThrow(request)
         return response(service.login(request))
+    }
+
+    @PutMapping("refresh")
+    fun refresh(principal: Principal): ResponseEntity<ResponseView<LoginView>> {
+        return response(service.refresh())
     }
 
 }
