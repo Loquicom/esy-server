@@ -6,11 +6,13 @@ import com.loqui.esy.data.request.RegisterRequest
 import com.loqui.esy.data.view.LoginView
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.exception.EsyAuthenticationException
+import com.loqui.esy.exception.EsySecurityException
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.DEFAULT_ROLE
 import com.loqui.esy.utils.JWTUtil
 import com.loqui.esy.utils.mapper.user.toDTO
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -62,11 +64,28 @@ class UserService(
 
     }
 
-    fun refresh(): LoginView {
+    fun validate(token: String): Boolean {
+        if (!jwtUtil.verify(token)) {
+            return false
+        }
+        val userDto = jwtUtil.getUser(token)
+        val optUser = repository.findById(userDto.id)
+        if (optUser.isEmpty) {
+            return false
+        }
+        val user = optUser.get()
+        return user.enabled
+    }
+
+    @Throws(EsyAuthenticationException::class)
+    fun refresh(token: String): LoginView {
         val login = SecurityContextHolder.getContext().authentication.principal as String
-        val user = repository.findByLogin(login).orElseThrow { EsyAuthenticationException("Unable to find user with login: $login") }
-        val token = jwtUtil.generate(toDTO(user))
-        return LoginView(token)
+        val user = jwtUtil.getUser(token)
+        if (login != user.login) {
+            throw EsySecurityException("Token login mismatch with security login", HttpStatus.BAD_REQUEST)
+        }
+        val newToken = jwtUtil.refresh(token)
+        return LoginView(newToken)
     }
 
 }

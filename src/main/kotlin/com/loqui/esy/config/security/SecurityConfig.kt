@@ -65,6 +65,8 @@ class SecurityConfig(
             .antMatchers("${this.rootPath}/say/**").permitAll()
             .antMatchers("${this.rootPath}/users/register").permitAll()
             .antMatchers("${this.rootPath}/users/login").permitAll()
+            .antMatchers("${this.rootPath}/users/token/**").permitAll()
+            .antMatchers("${this.rootPath}/users/token/refresh").authenticated()
             .anyRequest().authenticated()
 
         // Add JWT token filter
