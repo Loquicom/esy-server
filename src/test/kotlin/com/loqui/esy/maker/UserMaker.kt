@@ -40,7 +40,7 @@ fun makeUserDTO(i: Int? = null): UserDTO {
 }
 
 fun makeUserDTO(uuid: String, i: Int? = null): UserDTO {
-    return makeUserDTO(UUID.fromString(uuid), i)
+    return makeUserDTO(toUUID(uuid), i)
 }
 
 fun makeUserDTO(uuid: UUID, i: Int? = null): UserDTO {

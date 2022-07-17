@@ -3,6 +3,7 @@ package com.loqui.esy.maker
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.loqui.esy.data.view.ErrorView
 import com.loqui.esy.data.view.ResponseView
+import com.loqui.esy.data.view.SuccessView
 import com.loqui.esy.data.wrapper.EsyError
 import java.util.*
 
@@ -29,6 +30,13 @@ fun toResponse(error: EsyError): ResponseView<ErrorView> {
     )
 }
 
+fun successResponse(): SuccessView {
+    return SuccessView(true)
+}
+
+fun failResponse(): SuccessView {
+    return SuccessView(false)
+}
 
 fun <T> toJSON(obj: T): String {
     return objectMapper.writeValueAsString(obj)
