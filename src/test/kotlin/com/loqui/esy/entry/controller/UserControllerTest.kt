@@ -12,8 +12,7 @@ import org.mockito.Mockito
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.security.test.context.support.WithUserDetails
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
@@ -123,15 +122,64 @@ class UserControllerTest : ControllerTest() {
     }
 
     @Test
-    @WithUserDetails(LOGIN)
-    fun refreshTest() {
-        val result = makeLoginView()
-        val response = toResponse(result)
-        Mockito.`when`(service.refresh()).thenReturn(result)
+    fun validateSuccessTest() {
+        val response = successResponse()
+        Mockito.`when`(service.validate(JWT_TOKEN)).thenReturn(true)
         mockMvc
-            .perform(put("$path/refresh"))
+            .perform(get("$path/token/$JWT_TOKEN/validate"))
             .andExpect(status().isOk)
             .andExpect(content().json(toJSON(response)))
+    }
+
+    @Test
+    fun validateFailTest() {
+        val response = failResponse()
+        Mockito.`when`(service.validate(JWT_TOKEN)).thenReturn(false)
+        mockMvc
+            .perform(get("$path/token/$JWT_TOKEN/validate"))
+            .andExpect(status().isOk)
+            .andExpect(content().json(toJSON(response)))
+    }
+
+    @Test
+    @WithUserDetails(LOGIN)
+    fun refreshSuccessTest() {
+        val result = makeLoginView()
+        val response = toResponse(result)
+        Mockito.`when`(service.refresh(JWT_TOKEN)).thenReturn(result)
+        mockMvc
+            .perform(
+                put("$path/token/refresh")
+                    .headers(authHeader())
+            )
+            .andExpect(status().isOk)
+            .andExpect(content().json(toJSON(response)))
+    }
+
+    @Test
+    @WithUserDetails(LOGIN)
+    fun refreshInvalidAuthorization1Test() {
+        val result = makeLoginView()
+        Mockito.`when`(service.refresh(JWT_TOKEN)).thenReturn(result)
+        mockMvc
+            .perform(
+                put("$path/token/refresh")
+                    .header("Authorization", "NotBearer $JWT_TOKEN")
+            )
+            .andExpect(status().isBadRequest)
+    }
+
+    @Test
+    @WithUserDetails(LOGIN)
+    fun refreshInvalidAuthorization2Test() {
+        val result = makeLoginView()
+        Mockito.`when`(service.refresh(JWT_TOKEN)).thenReturn(result)
+        mockMvc
+            .perform(
+                put("$path/token/refresh")
+                    .header("Authorization", "")
+            )
+            .andExpect(status().isBadRequest)
     }
 
     @Test

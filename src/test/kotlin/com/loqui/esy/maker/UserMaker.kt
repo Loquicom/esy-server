@@ -28,9 +28,9 @@ fun makeUser(uuid: UUID, i: Int? = null): User {
     val prefix = getPrefix(i)
     return User(
         uuid,
-        prefix + LOGIN,
-        prefix + PASSWORD_ENCODED,
-        prefix + EMAIL,
+        "$prefix$LOGIN",
+        "$prefix$PASSWORD_ENCODED",
+        "$prefix$EMAIL",
         ROLE
     )
 }
@@ -47,8 +47,8 @@ fun makeUserDTO(uuid: UUID, i: Int? = null): UserDTO {
     val prefix = getPrefix(i)
     return UserDTO(
         uuid,
-        prefix + LOGIN,
-        prefix + EMAIL,
+        "$prefix$LOGIN",
+        "$prefix$EMAIL",
         Collections.singletonList(ROLE),
     )
 }
@@ -75,9 +75,9 @@ fun convertUser(user: UserDTO): User {
 fun makeRegisterRequest(i: Int? = null): RegisterRequest {
     val prefix = getPrefix(i)
     return RegisterRequest(
-        prefix + LOGIN,
-        prefix + PASSWORD,
-        prefix + EMAIL
+        "$prefix$LOGIN",
+        "$prefix$PASSWORD",
+        "$prefix$EMAIL"
     )
 }
 
@@ -85,13 +85,13 @@ fun makeLoginRequest(i: Int? = null): LoginRequest {
     val prefix = getPrefix(i)
     return LoginRequest(
         LOGIN + prefix,
-        prefix + PASSWORD,
+        "$prefix$PASSWORD",
     )
 }
 
 fun makeLoginView(i: Int? = null): LoginView {
     val prefix = getPrefix(i)
     return LoginView(
-        prefix + JWT_TOKEN
+        "$prefix$JWT_TOKEN"
     )
 }

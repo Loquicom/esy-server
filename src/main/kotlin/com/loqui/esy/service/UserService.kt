@@ -6,7 +6,6 @@ import com.loqui.esy.data.request.RegisterRequest
 import com.loqui.esy.data.view.LoginView
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.exception.EsyAuthenticationException
-import com.loqui.esy.exception.EsySecurityException
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.DEFAULT_ROLE
 import com.loqui.esy.utils.JWTUtil
@@ -82,7 +81,7 @@ class UserService(
         val login = SecurityContextHolder.getContext().authentication.principal as String
         val user = jwtUtil.getUser(token)
         if (login != user.login) {
-            throw EsySecurityException("Token login mismatch with security login", HttpStatus.BAD_REQUEST)
+            throw EsyAuthenticationException("Token login mismatch with security login", HttpStatus.BAD_REQUEST)
         }
         val newToken = jwtUtil.refresh(token)
         return LoginView(newToken)
