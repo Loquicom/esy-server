@@ -18,6 +18,8 @@ open class EsyException(
 
     constructor(message: String? = null, throwable: Throwable? = null) : this(message, 0, HttpStatus.INTERNAL_SERVER_ERROR, throwable)
 
+    constructor(message: String? = null, status: HttpStatus, throwable: Throwable? = null) : this(message, 0, status, throwable)
+
     fun trace(trace: String): EsyException {
         this.trace.add(trace)
         return this
