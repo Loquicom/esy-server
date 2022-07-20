@@ -1,0 +1,29 @@
+<configuration>
+  <property name="logging.path" value="${LOGS_PATH:-.}"/>
+  <property name="LOGS_FOLDER" value="${logging.path}/logs"/>
+  <property name="LOGS_ARCHIVE_FOLDER" value="${logging.path}/archived-logs"/>
+
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%boldGreen(%d{yyyy-MM-dd HH:mm:ss}) %cyan([%-5.5r ms]) %yellow(%-50.50logger{50} |) %highlight([%level]) %gray(-) %msg %throwable{0}%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOGS_FOLDER}/esy-server.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>${LOGS_ARCHIVE_FOLDER}/esy-server.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxHistory>14</maxHistory>
+      <maxFileSize>1MB</maxFileSize>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5.5r ms] %-50.50logger{50} | [%level] - %msg %throwable{0}%n</pattern>
+    </encoder>
+  </appender>
+
+  <root>
+    <appender-ref ref="stdout"/>
+    <appender-ref ref="file"/>
+  </root>
+
+</configuration>

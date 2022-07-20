@@ -13,6 +13,7 @@ test() {
 }
 
 start() {
+    mkdir -p logs/ archived-logs/ && chmod 777 logs/ archived-logs/
     docker volume create esy_db_volume
     docker-compose -f "$COMPOSE_FILE_PATH" up -d
 }
@@ -27,6 +28,7 @@ purge() {
     docker-compose -f $COMPOSE_FILE_PATH kill
     docker-compose -f $COMPOSE_FILE_PATH rm -f
     docker volume rm -f esy_db_volume
+    sudo rm -R logs/ archived-logs/
 }
 
 build() {

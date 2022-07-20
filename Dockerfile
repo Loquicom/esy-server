@@ -3,6 +3,7 @@ FROM openjdk:17-jdk-alpine
 ARG EXTRACTED
 
 RUN addgroup -S spring && adduser -S spring -G spring
+RUN mkdir -p /logs /archived-logs && chown -R spring:spring /logs /archived-logs
 USER spring:spring
 
 COPY ${EXTRACTED}/dependencies/ ./

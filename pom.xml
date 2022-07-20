@@ -16,6 +16,7 @@
   <properties>
     <java.version>17</java.version>
     <kotlin.version>1.7.0</kotlin.version>
+    <logback.version>1.2.11</logback.version>
     <docker.org>loquicom</docker.org>
     <docker.name>${project.artifactId}</docker.name>
     <docker.tag>${project.version}</docker.tag>
@@ -106,6 +107,17 @@
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt-gson</artifactId>
       <version>0.11.5</version>
+    </dependency>
+    <!-- Logger -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
     </dependency>
     <!-- Test -->
     <dependency>
