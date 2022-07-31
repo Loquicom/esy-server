@@ -11,5 +11,6 @@ enum class EsyError(
     REGISTER_LOGIN_ALREADY_EXIST(1, "Login already exist", HttpStatus.UNAUTHORIZED),
     AUTHENTICATION(2, "Unable to authenticate user", HttpStatus.UNAUTHORIZED),
     BAD_REQUEST(3, "Bad request", HttpStatus.BAD_REQUEST),
-    INVALID_AUTHORIZATION(4, "Invalid Authorization header", HttpStatus.BAD_REQUEST)
+    INVALID_AUTHORIZATION(4, "Invalid Authorization header", HttpStatus.BAD_REQUEST),
+    REGISTER_DISABLED(5, "Register is disabled", HttpStatus.FORBIDDEN)
 }

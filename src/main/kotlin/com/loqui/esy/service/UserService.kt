@@ -12,6 +12,7 @@ import com.loqui.esy.utils.JWTUtil
 import com.loqui.esy.utils.mapper.user.toDTO
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.BadCredentialsException
@@ -24,6 +25,7 @@ import java.util.*
 
 @Service
 class UserService(
+    @Value("\${esy.security.register}") private val registerActive: Boolean,
     @Autowired private val repository: UserRepository,
     @Autowired private val passwordEncoder: PasswordEncoder,
     @Autowired private val authenticationManager: AuthenticationManager,
@@ -35,6 +37,11 @@ class UserService(
     @Throws(EsyAuthenticationException::class)
     fun register(request: RegisterRequest): LoginView {
         log.debug("register, RegisterRequest={}", request)
+        // Check if register is enabled
+        if (!registerActive) {
+            log.info("Register is disabled")
+            throw EsyAuthenticationException(EsyError.REGISTER_DISABLED)
+        }
         // Check if user exist
         val optUser = repository.findByLogin(request.login)
         if (optUser.isPresent) {

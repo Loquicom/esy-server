@@ -14,15 +14,11 @@ import javax.servlet.http.HttpServletRequest
 
 @ControllerAdvice
 class ExceptionController(
-    @Value("\${esy.security.hide-internal-error}") private val hideInternalErrorValue: String
+    @Value("\${esy.security.hide-internal-error}") private val hideInternalError: Boolean
 ) {
 
     private val log = LoggerFactory.getLogger(ExceptionController::class.java)
-
-    private val hideInternalError: Boolean by lazy {
-        hideInternalErrorValue.toBoolean()
-    }
-
+    
     @ExceptionHandler(EsyException::class)
     fun esyExceptionHandler(request: HttpServletRequest, exception: EsyException): ResponseEntity<ResponseView<ErrorView>> {
         log.info("Esy exception,", exception)
