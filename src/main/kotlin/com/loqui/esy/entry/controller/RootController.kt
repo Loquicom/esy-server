@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
+import org.slf4j.LoggerFactory
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 import javax.validation.constraints.NotNull
@@ -13,6 +14,8 @@ import javax.validation.constraints.NotNull
 @RequestMapping("\${esy.api.root-path}")
 @CrossOrigin
 class RootController {
+
+    private val log = LoggerFactory.getLogger(RootController::class.java)
 
     @Operation(summary = "Display server info")
     @ApiResponses(
@@ -26,6 +29,7 @@ class RootController {
     )
     @GetMapping("/")
     fun info(): String {
+        log.info("Call info")
         return """
             It's works
             
@@ -49,6 +53,7 @@ class RootController {
     )
     @GetMapping("/ping")
     fun ping(): String {
+        log.info("Call ping")
         return "pong"
     }
 
@@ -64,6 +69,7 @@ class RootController {
     )
     @GetMapping("/say/{word}")
     fun say(@Parameter(description = "The word to say") @PathVariable @NotNull word: String): String {
+        log.info("Call say")
         return "Esy server: $word"
     }
 
@@ -78,6 +84,7 @@ class RootController {
     )
     @GetMapping("/auth")
     fun auth(): String {
+        log.info("Call auth")
         return "You are authentified"
     }
 

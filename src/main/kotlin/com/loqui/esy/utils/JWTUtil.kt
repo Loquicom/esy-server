@@ -6,6 +6,7 @@ import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.io.Encoders
 import io.jsonwebtoken.security.Keys
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.security.Key
@@ -16,6 +17,8 @@ import java.util.*
 class JWTUtil(
     @Value("\${security.jwt.key}") private val base64key: String? = null
 ) {
+
+    private val log = LoggerFactory.getLogger(JWTUtil::class.java)
 
     private val key: Key by lazy {
         val key = this.base64key ?: createKey()
@@ -60,7 +63,7 @@ class JWTUtil(
     fun getUser(token: String, validate: Boolean = true): UserDTO {
         val payload = getPayload(token, validate)
         if (payload == null) {
-            // TODO logger
+            log.info("Unable to get user, token is invalid")
             throw EsyTokenException("Invalid JWT: $token")
         }
         // Mapping user

@@ -3,6 +3,7 @@ package com.loqui.esy.config.security.filter
 import com.loqui.esy.config.security.EsyUserDetailService
 import com.loqui.esy.exception.EsyTokenException
 import com.loqui.esy.utils.JWTUtil
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
@@ -19,11 +20,14 @@ class JWTFilter(
     @Autowired private val jwtUtil: JWTUtil
 ) : OncePerRequestFilter() {
 
+    private val log = LoggerFactory.getLogger(JWTFilter::class.java)
+
     private fun filter(authHeader: String, response: HttpServletResponse) {
         try {
             val token = authHeader.substring(7)
             if (token.isBlank()) {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid JWT Token in Bearer Header")
+                log.info("Token missing in Authorization header")
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid JWT Token in Authorization header")
             }
             val user = jwtUtil.getUser(token)
             val detail = userDetailService.loadUserByUsername(user.login)
@@ -32,9 +36,11 @@ class JWTFilter(
                 SecurityContextHolder.getContext().authentication = authToken
             }
         } catch (ex: StringIndexOutOfBoundsException) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Token in Bearer Header")
+            log.info("Unable to get the token in Authorization header")
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid data in Authorization header")
         } catch (ex: EsyTokenException) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid JWT Token")
+            log.info("Invalid JWT token in Authorization header")
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid JWT Token in Authorization header")
         }
     }
 
