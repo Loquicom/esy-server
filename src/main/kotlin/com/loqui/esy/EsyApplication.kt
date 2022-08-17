@@ -3,8 +3,10 @@ package com.loqui.esy
 import com.loqui.esy.utils.JWTUtil
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
+import org.springframework.scheduling.annotation.EnableScheduling
 import java.security.InvalidParameterException
 
+@EnableScheduling
 @SpringBootApplication
 class EsyApplication
 
