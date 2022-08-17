@@ -24,9 +24,6 @@ services:
       DB_NAME: "${docker.db.name}"
       DB_USER: "${docker.db.user}"
       DB_PASS: "${docker.db.pass}"
-    volumes:
-      - ../../logs:/logs
-      - ../../archived-logs:/archived-logs
     depends_on:
       - "esy_db"
 volumes:
