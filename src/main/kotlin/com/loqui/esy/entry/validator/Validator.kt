@@ -17,6 +17,7 @@ abstract class Validator<T> {
     protected abstract fun validate(data: T)
 
     protected fun clear() {
+        prefix = ""
         valid = true
         errors.clear()
     }
@@ -141,7 +142,7 @@ abstract class Validator<T> {
         fun orError(message: String) {
             valid()
             if (!valid) {
-                validator.errors.add(message)
+                validator.errors.add(validator.prefix + message)
             }
         }
 
