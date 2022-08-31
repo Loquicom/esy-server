@@ -2,7 +2,7 @@ package com.loqui.esy.entry.controller
 
 import com.loqui.esy.maker.JWT_TOKEN
 import com.loqui.esy.maker.makeUserDTO
-import com.loqui.esy.utils.JWTUtil
+import com.loqui.esy.utils.JWTUtils
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -25,11 +25,11 @@ abstract class ControllerTest {
     protected lateinit var rootPath: String
 
     @MockBean
-    protected lateinit var jwtUtil: JWTUtil
+    protected lateinit var jwtUtils: JWTUtils
 
     fun mockAuthenticationFilter() {
         val userDto = makeUserDTO()
-        Mockito.`when`(jwtUtil.getUser(JWT_TOKEN)).thenReturn(userDto)
+        Mockito.`when`(jwtUtils.getUser(JWT_TOKEN)).thenReturn(userDto)
     }
 
     fun authHeader(): HttpHeaders {

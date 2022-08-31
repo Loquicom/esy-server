@@ -8,7 +8,7 @@ import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.exception.EsyAuthenticationException
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.DEFAULT_ROLE
-import com.loqui.esy.utils.JWTUtil
+import com.loqui.esy.utils.JWTUtils
 import com.loqui.esy.utils.mapper.user.toDTO
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,7 +29,7 @@ class UserService(
     @Autowired private val repository: UserRepository,
     @Autowired private val passwordEncoder: PasswordEncoder,
     @Autowired private val authenticationManager: AuthenticationManager,
-    @Autowired private val jwtUtil: JWTUtil
+    @Autowired private val jwtUtils: JWTUtils
 ) {
 
     private val log = LoggerFactory.getLogger(UserService::class.java)
@@ -59,7 +59,7 @@ class UserService(
         )
         repository.save(user)
         log.info("New user ${request.login} saved")
-        val token = jwtUtil.generate(toDTO(user))
+        val token = jwtUtils.generate(toDTO(user))
         return LoginView(token)
     }
 
@@ -69,7 +69,7 @@ class UserService(
         try {
             val authentication = authenticationManager.authenticate(UsernamePasswordAuthenticationToken(request.login, request.password))
             val user: User = authentication.principal as User
-            val token = jwtUtil.generate(toDTO(user))
+            val token = jwtUtils.generate(toDTO(user))
             return LoginView(token)
         } catch (ex: BadCredentialsException) {
             log.info("Bad credentials for ${request.login}")
@@ -80,10 +80,10 @@ class UserService(
 
     fun validate(token: String): Boolean {
         log.debug("validate, token={}", token)
-        if (!jwtUtil.verify(token)) {
+        if (!jwtUtils.verify(token)) {
             return false
         }
-        val userDto = jwtUtil.getUser(token)
+        val userDto = jwtUtils.getUser(token)
         val optUser = repository.findById(userDto.id)
         if (optUser.isEmpty) {
             return false
@@ -96,12 +96,12 @@ class UserService(
     fun refresh(token: String): LoginView {
         log.debug("refresh, token={}", token)
         val login = SecurityContextHolder.getContext().authentication.principal as String
-        val user = jwtUtil.getUser(token)
+        val user = jwtUtils.getUser(token)
         if (login != user.login) {
             log.info("Login information mismatch between token ({}) and security context ({})", user.login, login)
             throw EsyAuthenticationException("Token login mismatch with security login", HttpStatus.BAD_REQUEST)
         }
-        val newToken = jwtUtil.refresh(token)
+        val newToken = jwtUtils.refresh(token)
         return LoginView(newToken)
     }
 

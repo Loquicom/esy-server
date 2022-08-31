@@ -14,11 +14,11 @@ import java.util.*
 
 
 @Component
-class JWTUtil(
+class JWTUtils(
     @Value("\${security.jwt.key}") private val base64key: String? = null
 ) {
 
-    private val log = LoggerFactory.getLogger(JWTUtil::class.java)
+    private val log = LoggerFactory.getLogger(JWTUtils::class.java)
 
     private val key: Key by lazy {
         val key = this.base64key ?: createKey()
@@ -102,7 +102,7 @@ class JWTUtil(
             }
             result
         } catch (ex: JwtException) {
-            // TODO logger
+            log.info("Unabled to parse JWT: {}", ex.message)
             null
         }
     }

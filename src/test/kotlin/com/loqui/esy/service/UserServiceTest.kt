@@ -7,7 +7,7 @@ import com.loqui.esy.maker.*
 import com.loqui.esy.maker.impl.TestAuthentication
 import com.loqui.esy.maker.impl.TestContext
 import com.loqui.esy.repository.UserRepository
-import com.loqui.esy.utils.JWTUtil
+import com.loqui.esy.utils.JWTUtils
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
@@ -41,7 +41,7 @@ class UserServiceTest : ServiceTest() {
     private lateinit var authenticationManager: AuthenticationManager
 
     @MockBean
-    private lateinit var jwtUtil: JWTUtil
+    private lateinit var jwtUtils: JWTUtils
 
     @BeforeAll
     fun beforeAll() {
@@ -66,7 +66,7 @@ class UserServiceTest : ServiceTest() {
         Mockito.`when`(userRepository.findByLogin(request.login)).thenReturn(Optional.empty())
         Mockito.`when`(passwordEncoder.encode(Mockito.anyString())).thenReturn(PASSWORD_ENCODED)
         Mockito.`when`(userRepository.save(user)).thenReturn(user)
-        Mockito.`when`(jwtUtil.generate(userDto)).thenReturn(JWT_TOKEN)
+        Mockito.`when`(jwtUtils.generate(userDto)).thenReturn(JWT_TOKEN)
 
         val result = service.register(request)
         assertThat(result).isEqualTo(expected)
@@ -95,7 +95,7 @@ class UserServiceTest : ServiceTest() {
 
         Mockito.`when`(authenticationManager.authenticate(UsernamePasswordAuthenticationToken(request.login, request.password)))
             .thenReturn(TestAuthentication())
-        Mockito.`when`(jwtUtil.generate(userDto)).thenReturn(JWT_TOKEN)
+        Mockito.`when`(jwtUtils.generate(userDto)).thenReturn(JWT_TOKEN)
 
         val result = service.login(request)
         assertThat(result).isEqualTo(expected)
@@ -122,8 +122,8 @@ class UserServiceTest : ServiceTest() {
         val userDto = makeUserDTO()
         val user = makeUser()
 
-        Mockito.`when`(jwtUtil.verify(JWT_TOKEN)).thenReturn(true)
-        Mockito.`when`(jwtUtil.getUser(JWT_TOKEN)).thenReturn(userDto)
+        Mockito.`when`(jwtUtils.verify(JWT_TOKEN)).thenReturn(true)
+        Mockito.`when`(jwtUtils.getUser(JWT_TOKEN)).thenReturn(userDto)
         Mockito.`when`(userRepository.findById(userDto.id)).thenReturn(Optional.of(user))
 
         val result = service.validate(JWT_TOKEN)
@@ -132,7 +132,7 @@ class UserServiceTest : ServiceTest() {
 
     @Test
     fun validateInvalidTokenTest() {
-        Mockito.`when`(jwtUtil.verify(JWT_TOKEN)).thenReturn(false)
+        Mockito.`when`(jwtUtils.verify(JWT_TOKEN)).thenReturn(false)
 
         val result = service.validate(JWT_TOKEN)
         assertThat(result).isFalse
@@ -142,8 +142,8 @@ class UserServiceTest : ServiceTest() {
     fun validateNoUserTest() {
         val userDto = makeUserDTO()
 
-        Mockito.`when`(jwtUtil.verify(JWT_TOKEN)).thenReturn(true)
-        Mockito.`when`(jwtUtil.getUser(JWT_TOKEN)).thenReturn(userDto)
+        Mockito.`when`(jwtUtils.verify(JWT_TOKEN)).thenReturn(true)
+        Mockito.`when`(jwtUtils.getUser(JWT_TOKEN)).thenReturn(userDto)
         Mockito.`when`(userRepository.findById(userDto.id)).thenReturn(Optional.empty())
 
         val result = service.validate(JWT_TOKEN)
@@ -162,8 +162,8 @@ class UserServiceTest : ServiceTest() {
             false
         )
 
-        Mockito.`when`(jwtUtil.verify(JWT_TOKEN)).thenReturn(true)
-        Mockito.`when`(jwtUtil.getUser(JWT_TOKEN)).thenReturn(userDto)
+        Mockito.`when`(jwtUtils.verify(JWT_TOKEN)).thenReturn(true)
+        Mockito.`when`(jwtUtils.getUser(JWT_TOKEN)).thenReturn(userDto)
         Mockito.`when`(userRepository.findById(userDto.id)).thenReturn(Optional.of(user))
 
         val result = service.validate(JWT_TOKEN)
@@ -175,8 +175,8 @@ class UserServiceTest : ServiceTest() {
         val userDto = makeUserDTO()
         val expected = makeLoginView()
 
-        Mockito.`when`(jwtUtil.getUser(JWT_TOKEN)).thenReturn(userDto)
-        Mockito.`when`(jwtUtil.refresh(JWT_TOKEN)).thenReturn(JWT_TOKEN)
+        Mockito.`when`(jwtUtils.getUser(JWT_TOKEN)).thenReturn(userDto)
+        Mockito.`when`(jwtUtils.refresh(JWT_TOKEN)).thenReturn(JWT_TOKEN)
 
         val result = service.refresh(JWT_TOKEN)
         assertThat(result).isEqualTo(expected)
@@ -186,7 +186,7 @@ class UserServiceTest : ServiceTest() {
     fun refreshFailTest() {
         val userDto = makeUserDTO(1)
 
-        Mockito.`when`(jwtUtil.getUser(JWT_TOKEN)).thenReturn(userDto)
+        Mockito.`when`(jwtUtils.getUser(JWT_TOKEN)).thenReturn(userDto)
 
         val ex = assertThrows<EsyAuthenticationException> { service.refresh(JWT_TOKEN) }
 

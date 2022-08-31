@@ -64,10 +64,13 @@ class RegisterValidatorTest : ValidatorTest() {
 
         assertThat(validator.isValid(request)).isFalse
         assertThat(validator.getNumberOfErrors()).isEqualTo(7)
-        assertThat(validator.getErrors().contains(RegisterValidator.RegisterValidatorConstant.EMAIL_INVALID)).isTrue
-        assertThat(validator.getErrors().contains(RegisterValidator.RegisterValidatorConstant.EMAIL_REQUIRED)).isTrue
-        assertThat(validator.getErrors().contains(RegisterValidator.RegisterValidatorConstant.LOGIN_REQUIRED)).isTrue
-        assertThat(validator.getErrors().contains(RegisterValidator.RegisterValidatorConstant.PASSWORD_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("1: " + RegisterValidator.RegisterValidatorConstant.EMAIL_INVALID)).isTrue
+        assertThat(validator.getErrors().contains("1: " + RegisterValidator.RegisterValidatorConstant.EMAIL_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("1: " + RegisterValidator.RegisterValidatorConstant.LOGIN_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("1: " + RegisterValidator.RegisterValidatorConstant.PASSWORD_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("2: " + RegisterValidator.RegisterValidatorConstant.EMAIL_INVALID)).isTrue
+        assertThat(validator.getErrors().contains("2: " + RegisterValidator.RegisterValidatorConstant.LOGIN_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("2: " + RegisterValidator.RegisterValidatorConstant.PASSWORD_REQUIRED)).isTrue
     }
 
 }

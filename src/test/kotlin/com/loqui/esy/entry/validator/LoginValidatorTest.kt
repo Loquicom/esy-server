@@ -50,8 +50,10 @@ class LoginValidatorTest : ValidatorTest() {
         request.add(LoginRequest("    ", "      "))
         assertThat(validator.isValid(request)).isFalse
         assertThat(validator.getNumberOfErrors()).isEqualTo(4)
-        assertThat(validator.getErrors().contains(LoginValidator.LoginValidatorConstant.LOGIN_REQUIRED)).isTrue
-        assertThat(validator.getErrors().contains(LoginValidator.LoginValidatorConstant.PASSWORD_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("1: " + LoginValidator.LoginValidatorConstant.LOGIN_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("1: " + LoginValidator.LoginValidatorConstant.PASSWORD_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("2: " + LoginValidator.LoginValidatorConstant.LOGIN_REQUIRED)).isTrue
+        assertThat(validator.getErrors().contains("2: " + LoginValidator.LoginValidatorConstant.PASSWORD_REQUIRED)).isTrue
     }
 
 }

@@ -2,7 +2,7 @@ package com.loqui.esy.config.security.filter
 
 import com.loqui.esy.config.security.EsyUserDetailService
 import com.loqui.esy.exception.EsyTokenException
-import com.loqui.esy.utils.JWTUtil
+import com.loqui.esy.utils.JWTUtils
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse
 @Component
 class JWTFilter(
     @Autowired private val userDetailService: EsyUserDetailService,
-    @Autowired private val jwtUtil: JWTUtil
+    @Autowired private val jwtUtils: JWTUtils
 ) : OncePerRequestFilter() {
 
     private val log = LoggerFactory.getLogger(JWTFilter::class.java)
@@ -29,7 +29,7 @@ class JWTFilter(
                 log.info("Token missing in Authorization header")
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid JWT Token in Authorization header")
             }
-            val user = jwtUtil.getUser(token)
+            val user = jwtUtils.getUser(token)
             val detail = userDetailService.loadUserByUsername(user.login)
             val authToken = UsernamePasswordAuthenticationToken(user.login, detail.password, detail.authorities)
             if (SecurityContextHolder.getContext().authentication == null) {

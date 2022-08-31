@@ -35,7 +35,7 @@ abstract class Validator<T> {
     fun isValid(data: List<T>): Boolean {
         clear()
         for (i in data.indices) {
-            prefix = "$i: "
+            prefix = "${i + 1}: "
             validate(data[i])
         }
         return valid
