@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  sonarqube:
+    image:
+      sonarqube:lts
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_exts:/opt/sonarqube/extensions
+volumes:
+  sonarqube_data:
+    external: true
+  sonarqube_logs:
+    external: true
+  sonarqube_exts:
+    external: true
