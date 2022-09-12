@@ -1,5 +1,6 @@
 package com.loqui.esy.entry.controller
 
+import com.loqui.esy.data.dto.UserDTO
 import com.loqui.esy.data.request.LoginRequest
 import com.loqui.esy.data.request.RegisterRequest
 import com.loqui.esy.data.view.LoginView
@@ -8,14 +9,17 @@ import com.loqui.esy.data.view.SuccessView
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.entry.validator.LoginValidator
 import com.loqui.esy.entry.validator.RegisterValidator
+import com.loqui.esy.entry.validator.UuidValidator
 import com.loqui.esy.exception.EsyValidatorException
 import com.loqui.esy.service.UserService
+import com.loqui.esy.utils.mapper.user.toDTO
 import com.loqui.esy.utils.response
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @CrossOrigin
 @RestController
@@ -23,7 +27,8 @@ import org.springframework.web.bind.annotation.*
 class UserController(
     @Autowired private val service: UserService,
     @Autowired private val registerValidator: RegisterValidator,
-    @Autowired private val loginValidator: LoginValidator
+    @Autowired private val loginValidator: LoginValidator,
+    @Autowired private val uuidValidator: UuidValidator
 ) {
 
     private val log = LoggerFactory.getLogger(UserController::class.java)
@@ -64,6 +69,15 @@ class UserController(
         val token = authorization.substring(7)
         log.info("End refresh")
         return response(service.refresh(token))
+    }
+
+    @GetMapping("{id}")
+    fun get(@PathVariable id: String): ResponseEntity<ResponseView<UserDTO>> {
+        log.info("Begin get, id={}", id)
+        uuidValidator.isValidOrThrow(id)
+        val user = service.get(UUID.fromString(id))
+        log.info("End get")
+        return response(toDTO(user))
     }
 
 }

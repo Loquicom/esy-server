@@ -6,6 +6,7 @@ import com.loqui.esy.data.request.RegisterRequest
 import com.loqui.esy.data.view.LoginView
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.exception.EsyAuthenticationException
+import com.loqui.esy.exception.EsyNotFoundException
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.DEFAULT_ROLE
 import com.loqui.esy.utils.JWTUtils
@@ -103,6 +104,13 @@ class UserService(
         }
         val newToken = jwtUtils.refresh(token)
         return LoginView(newToken)
+    }
+
+    @Throws(EsyNotFoundException::class)
+    fun get(id: UUID): User {
+        log.debug("get, id={}", id)
+        val optionalUser = repository.findById(id)
+        return optionalUser.orElseThrow { EsyNotFoundException("Unable to find user with id=${id}") }
     }
 
 }

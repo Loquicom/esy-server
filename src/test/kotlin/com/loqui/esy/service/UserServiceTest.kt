@@ -3,6 +3,7 @@ package com.loqui.esy.service
 import com.loqui.esy.data.entity.User
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.exception.EsyAuthenticationException
+import com.loqui.esy.exception.EsyNotFoundException
 import com.loqui.esy.maker.*
 import com.loqui.esy.maker.impl.TestAuthentication
 import com.loqui.esy.maker.impl.TestContext
@@ -194,6 +195,23 @@ class UserServiceTest : ServiceTest() {
         assertThat(ex.status).isEqualTo(HttpStatus.BAD_REQUEST)
         assertThat(ex.trace()).isEmpty()
         assertThat(ex.throwable).isNull()
+    }
+
+    @Test
+    fun getSuccessTest() {
+        val user = makeUser()
+
+        Mockito.`when`(userRepository.findById(toUUID(ID))).thenReturn(Optional.of(user))
+
+        val result = service.get(toUUID(ID))
+        assertThat(result).isEqualTo(user)
+    }
+
+    @Test
+    fun getFailTest() {
+        Mockito.`when`(userRepository.findById(toUUID(ID))).thenReturn(Optional.empty())
+
+        assertThrows<EsyNotFoundException> { service.get(toUUID(ID)) }
     }
 
 }

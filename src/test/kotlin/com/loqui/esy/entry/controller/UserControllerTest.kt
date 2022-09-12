@@ -3,7 +3,9 @@ package com.loqui.esy.entry.controller
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.entry.validator.LoginValidator
 import com.loqui.esy.entry.validator.RegisterValidator
+import com.loqui.esy.entry.validator.UuidValidator
 import com.loqui.esy.exception.EsyAuthenticationException
+import com.loqui.esy.exception.EsyNotFoundException
 import com.loqui.esy.exception.EsyValidatorException
 import com.loqui.esy.maker.*
 import com.loqui.esy.service.UserService
@@ -26,6 +28,9 @@ class UserControllerTest : ControllerTest() {
 
     @MockBean
     private lateinit var loginValidator: LoginValidator
+
+    @MockBean
+    private lateinit var uuidValidator: UuidValidator
 
     protected val path by lazy {
         "$rootPath/users"
@@ -189,5 +194,43 @@ class UserControllerTest : ControllerTest() {
             .andExpect(status().isUnauthorized)
     }
 
+    @Test
+    fun getSuccessTest() {
+        val user = makeUser(ID)
+        val expected = makeUserDTO(ID)
+        val response = toResponse(expected)
+
+        Mockito.`when`(service.get(toUUID(ID))).thenReturn(user)
+
+        mockMvc.perform(get("$path/$ID").headers(authHeader()))
+            .andExpect(status().isOk)
+            .andExpect(content().json(toJSON(response)))
+    }
+
+    @Test
+    fun getBadRequestTest() {
+        val expected = EsyError.BAD_REQUEST
+        val response = toResponse(expected)
+
+        Mockito.`when`(uuidValidator.isValidOrThrow(ID)).thenThrow(EsyValidatorException(expected))
+
+        mockMvc.perform(get("$path/$ID").headers(authHeader()))
+            .andExpect(status().isBadRequest)
+            .andExpect(content().json(toJSON(response)))
+    }
+
+    @Test
+    fun getNotFoundTest() {
+        Mockito.`when`(service.get(toUUID(ID))).thenThrow(EsyNotFoundException())
+
+        mockMvc.perform(get("$path/$ID").headers(authHeader()))
+            .andExpect(status().isBadRequest)
+    }
+
+    @Test
+    fun getUnauthorizedTest() {
+        mockMvc.perform(get("$path/$ID"))
+            .andExpect(status().isUnauthorized)
+    }
 
 }
