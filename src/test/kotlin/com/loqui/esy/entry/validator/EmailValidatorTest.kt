@@ -32,11 +32,23 @@ class EmailValidatorTest : ValidatorTest() {
     @Test
     fun notValidTest() {
         assertThat(validator.isValid("is not an email")).isFalse
+        assertThat(validator.getNumberOfErrors()).isEqualTo(1)
+        assertThat(validator.getError(0)).isEqualTo(EmailValidator.EmailValidatorConstant.EMAIL_INVALID)
         assertThat(validator.isValid("invalid.email.com")).isFalse
+        assertThat(validator.getNumberOfErrors()).isEqualTo(1)
+        assertThat(validator.getError(0)).isEqualTo(EmailValidator.EmailValidatorConstant.EMAIL_INVALID)
         assertThat(validator.isValid("is an invalid@email.com")).isFalse
+        assertThat(validator.getNumberOfErrors()).isEqualTo(1)
+        assertThat(validator.getError(0)).isEqualTo(EmailValidator.EmailValidatorConstant.EMAIL_INVALID)
         assertThat(validator.isValid("invalid@email.c")).isFalse
+        assertThat(validator.getNumberOfErrors()).isEqualTo(1)
+        assertThat(validator.getError(0)).isEqualTo(EmailValidator.EmailValidatorConstant.EMAIL_INVALID)
         assertThat(validator.isValid("invalid@email.company")).isFalse
+        assertThat(validator.getNumberOfErrors()).isEqualTo(1)
+        assertThat(validator.getError(0)).isEqualTo(EmailValidator.EmailValidatorConstant.EMAIL_INVALID)
         assertThat(validator.isValid("invalid@.email.com")).isFalse
+        assertThat(validator.getNumberOfErrors()).isEqualTo(1)
+        assertThat(validator.getError(0)).isEqualTo(EmailValidator.EmailValidatorConstant.EMAIL_INVALID)
     }
 
     @Test
@@ -45,6 +57,10 @@ class EmailValidatorTest : ValidatorTest() {
         list.add(EMAIL)
         list.add("invalid@email.company")
         list.add("1-$EMAIL")
+        list.add("invalid.email.com")
         assertThat(validator.isValid(list)).isFalse
+        assertThat(validator.getNumberOfErrors()).isEqualTo(2)
+        assertThat(validator.getError(0)).isEqualTo("2: " + EmailValidator.EmailValidatorConstant.EMAIL_INVALID)
+        assertThat(validator.getError(1)).isEqualTo("4: " + EmailValidator.EmailValidatorConstant.EMAIL_INVALID)
     }
 }

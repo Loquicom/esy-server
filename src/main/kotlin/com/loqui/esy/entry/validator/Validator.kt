@@ -2,6 +2,7 @@ package com.loqui.esy.entry.validator
 
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.exception.EsyValidatorException
+import kotlin.reflect.KClass
 
 abstract class Validator<T> {
 
@@ -24,6 +25,41 @@ abstract class Validator<T> {
 
     protected fun <D> assertThat(data: D): AssertValidator<D> {
         return AssertValidator(this, data)
+    }
+
+    protected fun assertThatThrow(executable: () -> Unit, message: String? = null) {
+        assertThatThrow(executable, Throwable::class, message)
+    }
+
+    protected fun <T : Throwable> assertThatThrow(executable: () -> Unit, clazz: KClass<T>, message: String? = null) {
+        valid = try {
+            executable.invoke()
+            addError(message)
+            false
+        } catch (ex: Exception) {
+            if (clazz.isInstance(ex)) {
+                valid
+            } else {
+                addError(message)
+                false
+            }
+        }
+    }
+
+    protected fun assertThatNotThrow(executable: () -> Unit, message: String? = null) {
+        valid = try {
+            executable.invoke()
+            valid
+        } catch (ex: Exception) {
+            addError(message)
+            false
+        }
+    }
+
+    protected fun addError(message: String?) {
+        if (message != null) {
+            errors.add(prefix + message)
+        }
     }
 
     fun isValid(data: T): Boolean {
@@ -142,7 +178,7 @@ abstract class Validator<T> {
         fun orError(message: String) {
             valid()
             if (!valid) {
-                validator.errors.add(validator.prefix + message)
+                validator.addError(message)
             }
         }
 

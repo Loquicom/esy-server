@@ -1,6 +1,7 @@
 package com.loqui.esy.entry.validator
 
 import com.loqui.esy.data.wrapper.EsyError
+import com.loqui.esy.exception.EsyException
 import com.loqui.esy.exception.EsyValidatorException
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
@@ -217,7 +218,7 @@ class BaseValidatorTest : Validator<Any>() {
     }
 
     @Test
-    fun assertOrError() {
+    fun assertOrErrorTest() {
         assertThat(true).isTrue().orError("test-1")
         assertThat(false).isTrue().orError("test-2")
         assertThat(false).isTrue().orError("test-3")
@@ -228,13 +229,59 @@ class BaseValidatorTest : Validator<Any>() {
     }
 
     @Test
-    fun assertOrThrow() {
+    fun assertOrThrowTest() {
         assertThat(true).isTrue().orThrow(EsyError.UNKNOWN)
         clear()
         val ex = assertThrows<EsyValidatorException> { assertThat(false).isTrue().orThrow(EsyError.UNKNOWN) }
         Assertions.assertThat(ex.code).isEqualTo(EsyError.UNKNOWN.code)
         Assertions.assertThat(ex.message).isEqualTo(EsyError.UNKNOWN.message)
         Assertions.assertThat(ex.status).isEqualTo(EsyError.UNKNOWN.status)
+    }
+
+    @Test
+    fun assertThatThrowTest() {
+        val errMsg = "message-test"
+        clear()
+        assertThatThrow({ throw EsyException("test") }, errMsg)
+        Assertions.assertThat(valid).isTrue
+        Assertions.assertThat(errors.size).isEqualTo(0)
+        clear()
+        assertThatThrow({ throw EsyException("test") }, EsyException::class, errMsg)
+        Assertions.assertThat(valid).isTrue
+        Assertions.assertThat(errors.size).isEqualTo(0)
+        clear()
+        assertThatThrow({ throw EsyValidatorException("test") }, EsyException::class, errMsg)
+        Assertions.assertThat(valid).isTrue
+        Assertions.assertThat(errors.size).isEqualTo(0)
+        clear()
+        assertThatThrow({/* None */ }, errMsg)
+        Assertions.assertThat(valid).isFalse
+        Assertions.assertThat(errors.size).isEqualTo(1)
+        Assertions.assertThat(errors[0]).isEqualTo(errMsg)
+        clear()
+        assertThatThrow({/* None */ }, EsyException::class, errMsg)
+        Assertions.assertThat(valid).isFalse
+        Assertions.assertThat(errors.size).isEqualTo(1)
+        Assertions.assertThat(errors[0]).isEqualTo(errMsg)
+        clear()
+        assertThatThrow({ throw EsyException("test") }, EsyValidatorException::class, errMsg)
+        Assertions.assertThat(valid).isFalse
+        Assertions.assertThat(errors.size).isEqualTo(1)
+        Assertions.assertThat(errors[0]).isEqualTo(errMsg)
+    }
+
+    @Test
+    fun assertThatNotThrowTest() {
+        val errMsg = "message-test"
+        clear()
+        assertThatNotThrow({/* None */ }, errMsg)
+        Assertions.assertThat(valid).isTrue
+        Assertions.assertThat(errors.size).isEqualTo(0)
+        clear()
+        assertThatNotThrow({ throw EsyException("test") }, errMsg)
+        Assertions.assertThat(valid).isFalse
+        Assertions.assertThat(errors.size).isEqualTo(1)
+        Assertions.assertThat(errors[0]).isEqualTo(errMsg)
     }
 
     override fun validate(data: Any) {
