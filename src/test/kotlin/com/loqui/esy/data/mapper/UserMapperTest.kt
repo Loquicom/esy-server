@@ -2,9 +2,9 @@ package com.loqui.esy.data.mapper
 
 import com.loqui.esy.data.dto.UserDTO
 import com.loqui.esy.data.entity.User
-import com.loqui.esy.maker.ID
-import com.loqui.esy.maker.makeUser
-import com.loqui.esy.maker.makeUserDTO
+import com.loqui.esy.maker.user.ID
+import com.loqui.esy.maker.user.makeUser
+import com.loqui.esy.maker.user.makeUserDTO
 import com.loqui.esy.utils.mapper.user.toDTO
 import com.loqui.esy.utils.mapper.user.toEntity
 

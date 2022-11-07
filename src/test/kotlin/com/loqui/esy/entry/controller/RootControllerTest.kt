@@ -1,6 +1,6 @@
 package com.loqui.esy.entry.controller
 
-import com.loqui.esy.maker.LOGIN
+import com.loqui.esy.maker.user.LOGIN
 import org.junit.jupiter.api.Test
 import org.springframework.security.test.context.support.WithUserDetails
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get

@@ -1,10 +1,12 @@
-package com.loqui.esy.maker
+package com.loqui.esy.maker.user
 
 import com.loqui.esy.data.dto.UserDTO
 import com.loqui.esy.data.entity.User
 import com.loqui.esy.data.request.LoginRequest
 import com.loqui.esy.data.request.RegisterRequest
 import com.loqui.esy.data.view.LoginView
+import com.loqui.esy.maker.getPrefix
+import com.loqui.esy.maker.toUUID
 import java.util.*
 
 const val ID = "122b04c8-7235-4ec4-b10c-9ee2ad2617be"

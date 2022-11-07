@@ -4,15 +4,15 @@ import com.loqui.esy.data.entity.User
 import com.loqui.esy.data.wrapper.EsyError
 import com.loqui.esy.exception.EsyAuthenticationException
 import com.loqui.esy.exception.EsyNotFoundException
-import com.loqui.esy.maker.*
-import com.loqui.esy.maker.impl.TestAuthentication
-import com.loqui.esy.maker.impl.TestContext
+import com.loqui.esy.maker.toUUID
+import com.loqui.esy.maker.user.*
+import com.loqui.esy.maker.user.impl.TestAuthentication
+import com.loqui.esy.maker.user.impl.TestContext
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.JWTUtils
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
@@ -26,7 +26,6 @@ import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
 import java.util.*
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class UserServiceTest : ServiceTest() {
 
     @Autowired
@@ -46,9 +45,8 @@ class UserServiceTest : ServiceTest() {
 
     @BeforeAll
     fun beforeAll() {
-        val user = makeUser()
         val context = TestContext()
-        Mockito.mockStatic(UUID::class.java).`when`<UUID>(UUID::randomUUID).thenReturn(user.id)
+        Mockito.mockStatic(UUID::class.java).`when`<UUID>(UUID::randomUUID).thenReturn(toUUID(ID))
         Mockito.mockStatic(SecurityContextHolder::class.java).`when`<SecurityContext>(SecurityContextHolder::getContext).thenReturn(context)
     }
 

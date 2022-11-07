@@ -1,6 +1,6 @@
 package com.loqui.esy.entry.validator
 
-import com.loqui.esy.maker.EMAIL
+import com.loqui.esy.maker.user.EMAIL
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

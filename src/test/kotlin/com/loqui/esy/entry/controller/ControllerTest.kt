@@ -1,7 +1,7 @@
 package com.loqui.esy.entry.controller
 
-import com.loqui.esy.maker.JWT_TOKEN
-import com.loqui.esy.maker.makeUserDTO
+import com.loqui.esy.maker.user.JWT_TOKEN
+import com.loqui.esy.maker.user.makeUserDTO
 import com.loqui.esy.utils.JWTUtils
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired

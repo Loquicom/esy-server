@@ -1,8 +1,8 @@
-package com.loqui.esy.maker.impl
+package com.loqui.esy.maker.user.impl
 
-import com.loqui.esy.maker.ID
-import com.loqui.esy.maker.LOGIN
-import com.loqui.esy.maker.makeUser
+import com.loqui.esy.maker.user.ID
+import com.loqui.esy.maker.user.LOGIN
+import com.loqui.esy.maker.user.makeUser
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 

@@ -8,6 +8,7 @@ import com.loqui.esy.exception.EsyAuthenticationException
 import com.loqui.esy.exception.EsyNotFoundException
 import com.loqui.esy.exception.EsyValidatorException
 import com.loqui.esy.maker.*
+import com.loqui.esy.maker.user.*
 import com.loqui.esy.service.UserService
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito

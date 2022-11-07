@@ -1,6 +1,10 @@
 package com.loqui.esy.repository
 
-import com.loqui.esy.maker.*
+import com.loqui.esy.maker.toUUID
+import com.loqui.esy.maker.user.EMAIL
+import com.loqui.esy.maker.user.ID
+import com.loqui.esy.maker.user.LOGIN
+import com.loqui.esy.maker.user.makeUser
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

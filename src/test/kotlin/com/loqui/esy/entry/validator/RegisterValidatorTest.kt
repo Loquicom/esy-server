@@ -1,7 +1,7 @@
 package com.loqui.esy.entry.validator
 
 import com.loqui.esy.data.request.RegisterRequest
-import com.loqui.esy.maker.makeRegisterRequest
+import com.loqui.esy.maker.user.makeRegisterRequest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito

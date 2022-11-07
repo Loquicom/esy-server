@@ -1,7 +1,7 @@
 package com.loqui.esy.entry.validator
 
 import com.loqui.esy.data.request.LoginRequest
-import com.loqui.esy.maker.makeLoginRequest
+import com.loqui.esy.maker.user.makeLoginRequest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

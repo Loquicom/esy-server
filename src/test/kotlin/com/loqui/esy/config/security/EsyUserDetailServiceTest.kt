@@ -1,8 +1,8 @@
 package com.loqui.esy.config.security
 
 import com.loqui.esy.data.entity.User
-import com.loqui.esy.maker.LOGIN
-import com.loqui.esy.maker.makeUser
+import com.loqui.esy.maker.user.LOGIN
+import com.loqui.esy.maker.user.makeUser
 import com.loqui.esy.repository.UserRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

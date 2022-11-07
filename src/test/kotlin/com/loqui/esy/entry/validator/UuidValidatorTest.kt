@@ -1,6 +1,6 @@
 package com.loqui.esy.entry.validator
 
-import com.loqui.esy.maker.ID
+import com.loqui.esy.maker.user.ID
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
