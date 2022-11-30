@@ -212,4 +212,21 @@ class UserServiceTest : ServiceTest() {
         assertThrows<EsyNotFoundException> { service.get(toUUID(ID)) }
     }
 
+    @Test
+    fun getConnectedSuccessTest() {
+        val user = makeUser()
+
+        Mockito.`when`(userRepository.findByLogin(LOGIN)).thenReturn(Optional.of(user))
+
+        val result = service.getConnected()
+        assertThat(result).isEqualTo(user)
+    }
+
+    @Test
+    fun getConnectedFailTest() {
+        Mockito.`when`(userRepository.findByLogin(LOGIN)).thenReturn(Optional.empty())
+
+        assertThrows<EsyNotFoundException> { service.getConnected() }
+    }
+
 }

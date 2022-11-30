@@ -113,4 +113,11 @@ class UserService(
         return optionalUser.orElseThrow { EsyNotFoundException("Unable to find user with id=${id}") }
     }
 
+    @Throws(EsyNotFoundException::class)
+    fun getConnected(): User {
+        val login = SecurityContextHolder.getContext().authentication.principal as String
+        val optUser = repository.findByLogin(login)
+        return optUser.orElseThrow { EsyNotFoundException("Unable to find user with login=${login}") }
+    }
+
 }
