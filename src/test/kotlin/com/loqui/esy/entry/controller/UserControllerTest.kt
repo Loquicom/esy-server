@@ -7,17 +7,15 @@ import com.loqui.esy.entry.validator.UuidValidator
 import com.loqui.esy.exception.EsyAuthenticationException
 import com.loqui.esy.exception.EsyNotFoundException
 import com.loqui.esy.exception.EsyValidatorException
-import com.loqui.esy.maker.*
+import com.loqui.esy.maker.failResponse
+import com.loqui.esy.maker.successResponse
+import com.loqui.esy.maker.toResponse
+import com.loqui.esy.maker.toUUID
 import com.loqui.esy.maker.user.*
 import com.loqui.esy.service.UserService
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.http.MediaType
-import org.springframework.security.test.context.support.WithUserDetails
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
 class UserControllerTest : ControllerTest() {
 
@@ -33,23 +31,20 @@ class UserControllerTest : ControllerTest() {
     @MockBean
     private lateinit var uuidValidator: UuidValidator
 
-    protected val path by lazy {
-        "$rootPath/users"
-    }
+    override val path = "users"
 
     @Test
     fun registerSuccessTest() {
         val request = makeRegisterRequest()
         val result = makeLoginView()
         val response = toResponse(result)
+
         Mockito.`when`(service.register(request)).thenReturn(result)
-        mockMvc
-            .perform(
-                post("$path/register").contentType(MediaType.APPLICATION_JSON)
-                    .content(toJSON(request))
-            )
-            .andExpect(status().isOk)
-            .andExpect(content().json(toJSON(response)))
+
+        post("register")
+            .content(request)
+            .status(ResultHttpStatus.OK)
+            .expect(response)
     }
 
     @Test
@@ -57,14 +52,13 @@ class UserControllerTest : ControllerTest() {
         val request = makeRegisterRequest()
         val result = EsyError.REGISTER_LOGIN_ALREADY_EXIST
         val response = toResponse(result)
+
         Mockito.`when`(service.register(request)).thenThrow(EsyAuthenticationException(result))
-        mockMvc
-            .perform(
-                post("$path/register").contentType(MediaType.APPLICATION_JSON)
-                    .content(toJSON(request))
-            )
-            .andExpect(status().isUnauthorized)
-            .andExpect(content().json(toJSON(response)))
+
+        post("register")
+            .content(request)
+            .status(ResultHttpStatus.UNAUTHORIZED)
+            .expect(response)
     }
 
     @Test
@@ -72,14 +66,13 @@ class UserControllerTest : ControllerTest() {
         val request = makeRegisterRequest()
         val result = EsyError.BAD_REQUEST
         val response = toResponse(result)
+
         Mockito.`when`(registerValidator.isValidOrThrow(request)).thenThrow(EsyValidatorException(result))
-        mockMvc
-            .perform(
-                post("$path/register").contentType(MediaType.APPLICATION_JSON)
-                    .content(toJSON(request))
-            )
-            .andExpect(status().isBadRequest)
-            .andExpect(content().json(toJSON(response)))
+
+        post("register")
+            .content(request)
+            .status(ResultHttpStatus.BAD_REQUEST)
+            .expect(response)
     }
 
     @Test
@@ -87,14 +80,13 @@ class UserControllerTest : ControllerTest() {
         val request = makeLoginRequest()
         val result = makeLoginView()
         val response = toResponse(result)
+
         Mockito.`when`(service.login(request)).thenReturn(result)
-        mockMvc
-            .perform(
-                post("$path/login").contentType(MediaType.APPLICATION_JSON)
-                    .content(toJSON(request))
-            )
-            .andExpect(status().isOk)
-            .andExpect(content().json(toJSON(response)))
+
+        post("login")
+            .content(request)
+            .status(ResultHttpStatus.OK)
+            .expect(response)
     }
 
     @Test
@@ -102,14 +94,13 @@ class UserControllerTest : ControllerTest() {
         val request = makeLoginRequest()
         val result = EsyError.AUTHENTICATION
         val response = toResponse(result)
+
         Mockito.`when`(service.login(request)).thenThrow(EsyAuthenticationException(result))
-        mockMvc
-            .perform(
-                post("$path/login").contentType(MediaType.APPLICATION_JSON)
-                    .content(toJSON(request))
-            )
-            .andExpect(status().isUnauthorized)
-            .andExpect(content().json(toJSON(response)))
+
+        post("login")
+            .content(request)
+            .status(ResultHttpStatus.UNAUTHORIZED)
+            .expect(response)
     }
 
     @Test
@@ -117,82 +108,76 @@ class UserControllerTest : ControllerTest() {
         val request = makeLoginRequest()
         val result = EsyError.BAD_REQUEST
         val response = toResponse(result)
+
         Mockito.`when`(loginValidator.isValidOrThrow(request)).thenThrow(EsyValidatorException(result))
-        mockMvc
-            .perform(
-                post("$path/login").contentType(MediaType.APPLICATION_JSON)
-                    .content(toJSON(request))
-            )
-            .andExpect(status().isBadRequest)
-            .andExpect(content().json(toJSON(response)))
+
+        post("login")
+            .content(request)
+            .status(ResultHttpStatus.BAD_REQUEST)
+            .expect(response)
     }
 
     @Test
     fun validateSuccessTest() {
         val response = successResponse()
+
         Mockito.`when`(service.validate(JWT_TOKEN)).thenReturn(true)
-        mockMvc
-            .perform(get("$path/token/$JWT_TOKEN/validate"))
-            .andExpect(status().isOk)
-            .andExpect(content().json(toJSON(response)))
+
+        get("token/$JWT_TOKEN/validate")
+            .status(ResultHttpStatus.OK)
+            .expect(response)
     }
 
     @Test
     fun validateFailTest() {
         val response = failResponse()
+
         Mockito.`when`(service.validate(JWT_TOKEN)).thenReturn(false)
-        mockMvc
-            .perform(get("$path/token/$JWT_TOKEN/validate"))
-            .andExpect(status().isOk)
-            .andExpect(content().json(toJSON(response)))
+
+        get("token/$JWT_TOKEN/validate")
+            .status(ResultHttpStatus.OK)
+            .expect(response)
     }
 
     @Test
-    @WithUserDetails(LOGIN)
     fun refreshSuccessTest() {
         val result = makeLoginView()
         val response = toResponse(result)
+
         Mockito.`when`(service.refresh(JWT_TOKEN)).thenReturn(result)
-        mockMvc
-            .perform(
-                put("$path/token/refresh")
-                    .headers(authHeader())
-            )
-            .andExpect(status().isOk)
-            .andExpect(content().json(toJSON(response)))
+
+        put("token/refresh")
+            .authHeader()
+            .status(ResultHttpStatus.OK)
+            .expect(response)
     }
 
     @Test
-    @WithUserDetails(LOGIN)
     fun refreshInvalidAuthorization1Test() {
         val result = makeLoginView()
+
         Mockito.`when`(service.refresh(JWT_TOKEN)).thenReturn(result)
-        mockMvc
-            .perform(
-                put("$path/token/refresh")
-                    .header("Authorization", "NotBearer $JWT_TOKEN")
-            )
-            .andExpect(status().isBadRequest)
+
+        put("token/refresh")
+            .header("Authorization", "NotBearer $JWT_TOKEN")
+            .status(ResultHttpStatus.BAD_REQUEST)
     }
 
     @Test
-    @WithUserDetails(LOGIN)
     fun refreshInvalidAuthorization2Test() {
         val result = makeLoginView()
+
         Mockito.`when`(service.refresh(JWT_TOKEN)).thenReturn(result)
-        mockMvc
-            .perform(
-                put("$path/token/refresh")
-                    .header("Authorization", "")
-            )
-            .andExpect(status().isBadRequest)
+
+        put("token/refresh")
+            .header("Authorization", "")
+            .status(ResultHttpStatus.BAD_REQUEST)
     }
 
     @Test
     fun refreshUnauthorizedTest() {
-        mockMvc
-            .perform(put("$path/refresh"))
-            .andExpect(status().isUnauthorized)
+        put("refresh")
+            .status(ResultHttpStatus.UNAUTHORIZED)
     }
 
     @Test
@@ -203,9 +188,10 @@ class UserControllerTest : ControllerTest() {
 
         Mockito.`when`(service.get(toUUID(ID))).thenReturn(user)
 
-        mockMvc.perform(get("$path/$ID").headers(authHeader()))
-            .andExpect(status().isOk)
-            .andExpect(content().json(toJSON(response)))
+        get(ID)
+            .authHeader()
+            .status(ResultHttpStatus.OK)
+            .expect(response)
     }
 
     @Test
@@ -215,23 +201,25 @@ class UserControllerTest : ControllerTest() {
 
         Mockito.`when`(uuidValidator.isValidOrThrow(ID)).thenThrow(EsyValidatorException(expected))
 
-        mockMvc.perform(get("$path/$ID").headers(authHeader()))
-            .andExpect(status().isBadRequest)
-            .andExpect(content().json(toJSON(response)))
+        get(ID)
+            .authHeader()
+            .status(ResultHttpStatus.BAD_REQUEST)
+            .expect(response)
     }
 
     @Test
     fun getNotFoundTest() {
         Mockito.`when`(service.get(toUUID(ID))).thenThrow(EsyNotFoundException())
 
-        mockMvc.perform(get("$path/$ID").headers(authHeader()))
-            .andExpect(status().isBadRequest)
+        get(ID)
+            .authHeader()
+            .status(ResultHttpStatus.BAD_REQUEST)
     }
 
     @Test
     fun getUnauthorizedTest() {
-        mockMvc.perform(get("$path/$ID"))
-            .andExpect(status().isUnauthorized)
+        get(ID)
+            .status(ResultHttpStatus.UNAUTHORIZED)
     }
 
 }
