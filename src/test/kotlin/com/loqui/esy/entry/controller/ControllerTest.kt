@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.servlet.MockMvc
@@ -20,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
+import java.security.InvalidParameterException
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -109,6 +111,12 @@ abstract class ControllerTest {
             return this
         }
 
+        fun status(httpStatus: HttpStatus): CallMockMVC {
+            val status = ResultHttpStatus.fromHttpStatus(httpStatus)
+                ?: throw InvalidParameterException("Unable to converse HttpStatus to ResultHttpStatus")
+            return status(status)
+        }
+
         fun status(resultStatus: ResultHttpStatus): CallMockMVC {
             val action = getResultAction()
             action.andExpect(resultStatus.status)
@@ -162,7 +170,15 @@ abstract class ControllerTest {
         INTERNAL_SERVER_ERROR("500", status().isInternalServerError),
         NOT_IMPLEMENTED("501", status().isNotImplemented),
         BAD_GATEWAY("502", status().isBadGateway),
-        SERVICE_UNAVAILABLE("503", status().isServiceUnavailable),
+        SERVICE_UNAVAILABLE("503", status().isServiceUnavailable);
+
+        companion object {
+            fun fromHttpStatus(status: HttpStatus): ResultHttpStatus? {
+                val code = status.value()
+                val list = ResultHttpStatus.values()
+                return list.find { elt -> elt.code == "$code" }
+            }
+        }
     }
 
 }
