@@ -18,7 +18,7 @@ const val ROLE = "USER"
 const val JWT_TOKEN = "test-jwt-token"
 
 fun makeUser(i: Int? = null): User {
-    return makeUser(UUID.randomUUID(), i)
+    return makeUser(toUUID(ID), i)
 }
 
 fun makeUser(id: String, i: Int? = null): User {

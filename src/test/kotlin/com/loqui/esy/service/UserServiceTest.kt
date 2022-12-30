@@ -11,9 +11,11 @@ import com.loqui.esy.maker.user.impl.TestContext
 import com.loqui.esy.repository.UserRepository
 import com.loqui.esy.utils.JWTUtils
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.mockito.MockedStatic
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -27,6 +29,10 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import java.util.*
 
 class UserServiceTest : ServiceTest() {
+
+    private lateinit var mockedStaticUUID: MockedStatic<UUID>
+
+    private lateinit var mockerStaticSecurityContextHolder: MockedStatic<SecurityContextHolder>
 
     @Autowired
     private lateinit var service: UserService
@@ -46,8 +52,16 @@ class UserServiceTest : ServiceTest() {
     @BeforeAll
     fun beforeAll() {
         val context = TestContext()
-        Mockito.mockStatic(UUID::class.java).`when`<UUID>(UUID::randomUUID).thenReturn(toUUID(ID))
-        Mockito.mockStatic(SecurityContextHolder::class.java).`when`<SecurityContext>(SecurityContextHolder::getContext).thenReturn(context)
+        mockedStaticUUID = Mockito.mockStatic(UUID::class.java)
+        mockedStaticUUID.`when`<UUID>(UUID::randomUUID).thenReturn(toUUID(ID))
+        mockerStaticSecurityContextHolder = Mockito.mockStatic(SecurityContextHolder::class.java)
+        mockerStaticSecurityContextHolder.`when`<SecurityContext>(SecurityContextHolder::getContext).thenReturn(context)
+    }
+
+    @AfterAll
+    fun afterAll() {
+        mockedStaticUUID.close()
+        mockerStaticSecurityContextHolder.close()
     }
 
     @Test
